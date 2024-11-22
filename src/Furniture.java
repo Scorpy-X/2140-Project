@@ -1,5 +1,5 @@
 
-public class Furniture(){
+public class Furniture{
 
     private String type;
     private String state;
@@ -19,35 +19,15 @@ public class Furniture(){
         return type;
     }
 
-
     public String getState() {
         return state;
     }
 
+
+    //Mutators
+
     public void setState(String state) {
         this.state = state;
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 }
