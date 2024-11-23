@@ -6,7 +6,7 @@ public class Occupant{
     private String phoneNumber;
     private String email;
 
-    //Remember to do Unique Id check, is id number a number less than 20 check, and conceptualize phone number formatting 
+    //Remember to do Unique Id check, is id number a number less than 20 digits check, and conceptualize phone number formatting, phone number all digits check 
 
     public Occupant(){}
 
@@ -63,10 +63,17 @@ public class Occupant{
         this.idNum = idNum;
     }
 
-    public void setPhoneNumber(String phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {                              
         this.phoneNumber = phoneNumber;
     }
 
 
+    //Checks 
+
+    public static boolean isValidPhoneNumber(String str) {                           //Checks if user input is a valid phone number 
+        // Check if the string matches the regex for digits only
+
+        return !str.matches("\\d+"); // \\d+ matches one or more digits
+    }
 
 }

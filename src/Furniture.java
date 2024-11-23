@@ -4,6 +4,7 @@ public class Furniture{
     private String type;
     private String state;
 
+    //Discuss making state a integer {1-10}
 
     public Furniture(){}
 
