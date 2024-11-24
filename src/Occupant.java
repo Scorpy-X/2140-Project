@@ -2,7 +2,7 @@ public class Occupant{
 
     private String fName;
     private String lName;
-    private int idNum;
+    private long idNum;
     private String phoneNumber;
     private String email;
 
@@ -30,7 +30,7 @@ public class Occupant{
         return lName;
     }
 
-    public int getIdNum() {
+    public long getIdNum() {
         return idNum;
     }
 
@@ -59,7 +59,7 @@ public class Occupant{
         this.lName = lName;
     }
 
-    public void setIdNum(int idNum) {
+    public void setIdNum(long idNum) {
         this.idNum = idNum;
     }
 

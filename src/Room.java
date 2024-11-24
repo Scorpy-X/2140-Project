@@ -4,6 +4,7 @@ public class Room{
 
     private String roomNum;                 //alpha numeric room num with block letter 
     private ArrayList<Furniture> furnitureLst;
+    private ArrayList<Furniture> furnitureLst2;
     private ArrayList<Occupant> occupantLst;
     private Occupant occupant1;
     private Occupant occupant2;
