@@ -31,12 +31,52 @@ public class Room{
 
     public Room(){}
 
-    public Room(){          //Room for 1 with no occupants
+    public Room(Occupant occupant1,                      //Room for 1 
+                String easyChairState,                   //Use NULL on occupant if no occupant is in the room
+                String bedState, 
+                String mattrassState, 
+                String closetState,
+                String coffeeTableState, 
+                String studyTableState, 
+                String chestOfDrawsState, 
+                String wallState, 
+                String windowState){   
+                    
+        furnitureLst = new ArrayList<Furniture>();
+        occupantLst = new ArrayList<Occupant>();
+
         
-    }
 
-    public Room(){          //Room for 1 with occupant
+        if(occupant1==null){
+            this.occupant1 = null;
+        }
 
+        else{
+            this.occupant1 = occupant1;
+            occupantLst.add(occupant1);
+        }
+
+
+        this.easyChair = new Furniture(easyChairState);
+        this.bed = new Furniture(bedState);
+        this.mattrass = new Furniture(mattrassState);
+        this.closet = new Furniture(closetState);
+        this.coffeeTable = new Furniture(coffeeTableState);
+        this.studyTable = new Furniture(studyTableState);
+        this.chestOfDraws = new Furniture(chestOfDrawsState);
+        this.wall = new Furniture(wallState);
+        this.window = new Furniture(windowState);
+
+
+        this.furnitureLst.add(this.easyChair);
+        this.furnitureLst.add(this.bed);
+        this.furnitureLst.add(this.mattrass);
+        this.furnitureLst.add(this.closet);
+        this.furnitureLst.add(this.coffeeTable);
+        this.furnitureLst.add(this.studyTable);
+        this.furnitureLst.add(this.chestOfDraws);
+        this.furnitureLst.add(this.wall);
+        this.furnitureLst.add(this.window);
 
     }
 
