@@ -17,8 +17,13 @@ public class DataManager {
 					r_number Text PRIMARY KEY,
 					block TEXT)""";
 				stmt.execute(query);
-				for(char c: List.of('A','B','C','D','E','F','G')){
+				for(char c: List.of('A','B','C','D')){
 					for(int i=1;i<21;i++) {
+						stmt.execute("INSERT INTO Rooms (r_number,block) VALUES ('"+c+""+i+"','"+c+"')");
+					}
+				}
+				for(char c: List.of('E','F','G')){
+					for(int i=1;i<41;i++) {
 						stmt.execute("INSERT INTO Rooms (r_number,block) VALUES ('"+c+""+i+"','"+c+"')");
 					}
 				}
@@ -37,10 +42,10 @@ public class DataManager {
 			stmt.execute(query);
 			query = """
 					CREATE TABLE IF NOT EXISTS Furniture(
-					id_num INTEGER PRIMARY KEY,
 					type TEXT,
 					state TEXT,
 					room_id Text,
+					PRIMARY KEY (type, room_id),
 					FOREIGN KEY (room_id) REFERENCES Rooms (r_number))""";
 			stmt.execute(query);			
 			
@@ -88,7 +93,7 @@ public class DataManager {
 						+",phoneNumber='"+new_p.getPhoneNumber()+"'"
 						+",email='"+new_p.getEmail()+"'"
 						+",room_id='"+new_p.getRoom_id()+"' WHERE idNum= "+id; //Missing Room ID Parameter
-			int num =stmt.executeUpdate(query);
+			int num =stmt.executeUpdate(query); 
 			if(num==0) {
 				System.out.println("No record with id number "+id+" was found.");
 			}else{
@@ -136,24 +141,25 @@ public class DataManager {
 			System.out.println("Insert Successful");
 		}catch (SQLException e) {
 			if (e.getMessage().contains("UNIQUE constraint failed")) {
-                System.out.println("Error: Duplicate ID Number. Entry already exists.");
+                System.out.println("Error: Duplicate. Entry already exists.");
             } else {
                 System.out.println("Database error: " + e.getMessage());
             }
 		}
 	}
 	
-	public static void updateFurniture(long id, Furniture f){//Updates an existing record in the Occupant Table
+	public static void updateFurniture(String room_id, String type, Furniture f){//Updates an existing record in the Occupant Table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
 			String query = "UPDATE Furniture set"
 						+" type='"+f.getType()+"'"
 						+",state='"+f.getState()+"'"
-						+",room_id='"+f.getRoom_id()+"' WHERE id_num="+id; //Missing Room ID Parameter
+						+",room_id='"+f.getRoom_id()+
+						"' WHERE room_id='"+room_id+"' AND type ='"+type+"'"; //Missing Room ID Parameter
 			int num =stmt.executeUpdate(query);
 			if(num==0) {
-				System.out.println("No record with id number "+id+" was found.");
+				System.out.println("No furniture record of type"+type+" was found in room with id "+room_id);
 			}else{
 				System.out.println("Update Successful");
 			}
@@ -173,7 +179,7 @@ public class DataManager {
 		ArrayList<Furniture> furnitureList = new ArrayList<>();
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
-			String query ="SELECT Furniture.id_num, Furniture.type, Furniture.state, Furniture.room_id"+
+			String query ="SELECT Furniture.type, Furniture.state, Furniture.room_id"+
 						  " FROM Furniture JOIN Rooms ON Furniture.room_id = Rooms.r_number"+
 						  " WHERE Rooms.r_number = '"+room_id+"';";
 			ResultSet rs = stmt.executeQuery(query);

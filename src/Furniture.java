@@ -1,7 +1,6 @@
 
 public class Furniture{
 
-  
     private String state;
     private String room_id;
     private String type;
