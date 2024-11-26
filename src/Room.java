@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Room{
 
     private String roomNum;                 //alpha numeric room num with block letter 
+    private char block;
     private ArrayList<Furniture> furnitureLst;
     private ArrayList<Furniture> furnitureLst2;
     private ArrayList<Occupant> occupantLst;
@@ -29,7 +30,12 @@ public class Room{
     private Furniture studyTable2;
     private Furniture chestOfDraws2;
 
-    public Room(){}
+    public Room(String roomNum,char block){
+    	this.roomNum = roomNum;
+    	this.block = block;
+    	furnitureLst = new ArrayList<Furniture>();
+        occupantLst = new ArrayList<Occupant>();
+    }
 
     public Room(Occupant occupant1,                      //Room for 1 
                 String easyChairState,                   //Use NULL on occupant if no occupant is in the room
@@ -90,8 +96,24 @@ public class Room{
 
         
     }
-
     
+    public boolean addOccupant(Occupant o) {
+    	if(DataManager.insertOccupant(o)){
+    		this.occupantLst.add(o);
+    		return true; //returns true when occcupant is added successfully 
+    	}else {
+    		return false; //returns false when occupant cannot be added
+    	}
+    }
+    
+    public boolean updateOccupant(Occupant o) {
+    	if(DataManager.insertOccupant(o)){
+    		this.occupantLst.add(o);
+    		return true; //returns true when occcupant is added successfully 
+    	}else {
+    		return false; //returns false when occupant cannot be added
+    	}
+    }
 
 
 

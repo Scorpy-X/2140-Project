@@ -18,12 +18,12 @@ public class DataManager {
 					block TEXT)""";
 				stmt.execute(query);
 				for(char c: List.of('A','B','C','D')){
-					for(int i=1;i<21;i++) {
+					for(int i=1;i<41;i++) {
 						stmt.execute("INSERT INTO Rooms (r_number,block) VALUES ('"+c+""+i+"','"+c+"')");
 					}
 				}
 				for(char c: List.of('E','F','G')){
-					for(int i=1;i<41;i++) {
+					for(int i=1;i<21;i++) {
 						stmt.execute("INSERT INTO Rooms (r_number,block) VALUES ('"+c+""+i+"','"+c+"')");
 					}
 				}
@@ -60,7 +60,7 @@ public class DataManager {
 	}
 	
 	
-	public static void insertOccupant(Occupant p){ //Inserts new occupant information into the occupant table
+	public static boolean insertOccupant(Occupant p){ //Inserts new occupant information into the occupant table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
@@ -72,18 +72,19 @@ public class DataManager {
 							+p.getEmail()+"','"
 							+p.getRoom_id()+"')";
 			stmt.execute(query);
-			System.out.println("Insert Successful");
+			return true;
 		}catch (SQLException e) {
 			if (e.getMessage().contains("UNIQUE constraint failed")) {
                 System.out.println("Error: Duplicate ID Number. Entry already exists.");
             } else {
                 System.out.println("Database error: " + e.getMessage());
             }
+			return false;
 		}
 	}
 	
 	
-	public static void updateOccupant(long id, Occupant new_p){//Updates an existing record in the Occupant Table
+	public static boolean updateOccupant(long id, Occupant new_p){//Updates an existing record in the Occupant Table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
@@ -96,8 +97,10 @@ public class DataManager {
 			int num =stmt.executeUpdate(query); 
 			if(num==0) {
 				System.out.println("No record with id number "+id+" was found.");
+				return false;
 			}else{
 				System.out.println("Update Successful");
+				return true;
 			}
 			
 		}catch (SQLException e) {
@@ -106,6 +109,7 @@ public class DataManager {
             } else {
                 System.out.println("Database error: " + e.getMessage());
             }
+			return false;
 		}
 		
 	}
@@ -225,6 +229,8 @@ public class DataManager {
 	        return false; // Return false if there's an error
 	    }
 	}
+	
+	
 		
 	public static void clearDatabase() {
 		String url= "jdbc:sqlite:Room_Information.db";

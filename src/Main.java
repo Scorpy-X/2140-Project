@@ -16,7 +16,7 @@ public class Main { //Small Demonstration of database methods
 		for(Furniture f1:f) {
 			System.out.println("Name:"+f1.getType()+" State:"+f1.getState()+" Room Id:"+f1.getRoom_id());
 		}
-		for(Occupant op:o){
+		for(Occupant op:o){ 
 			System.out.println("Name:"+op.getfName()+" "+op.getlName()
 								+" Id Number:"+op.getIdNum()
 								+" Phone Number:" + op.getPhoneNumber()
