@@ -5,18 +5,20 @@ public class Occupant{
     private long idNum;
     private String phoneNumber;
     private String email;
+    private String room_id;
 
     //Remember to do Unique Id check, is id number a number less than 20 digits check, and conceptualize phone number formatting, phone number all digits check 
 
     public Occupant(){}
 
-    public Occupant(String fName, String lName, int idNum, String phoneNumber, String email){
+    public Occupant(String fName, String lName, int idNum, String phoneNumber, String email,String room_id){
 
         this.fName = fName;
         this.lName = lName;
         this.idNum = idNum;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.room_id = room_id;
 
     }
 
@@ -45,6 +47,10 @@ public class Occupant{
     public String getEmail() {
         return email;
     }
+    
+    public String getRoom_id() {
+        return email;
+    }
 
     
     
@@ -65,6 +71,10 @@ public class Occupant{
 
     public void setPhoneNumber(String phoneNumber) {                              
         this.phoneNumber = phoneNumber;
+    }
+    
+    public void setRoom_id(String room_id) {                              
+        this.room_id = room_id;
     }
 
 
