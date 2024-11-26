@@ -49,7 +49,7 @@ public class Occupant{
     }
     
     public String getRoom_id() {
-        return email;
+        return room_id;
     }
 
     

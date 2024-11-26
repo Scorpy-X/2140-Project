@@ -4,19 +4,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 public class DataManager {
 	public static void createDatabase(){  //Initiailizes Database if not found
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
-			
+			if(!doesTableExist(conn,"Rooms")) { //Checks if table exists before creating
+				String query = """
+					CREATE TABLE IF NOT EXISTS Rooms(
+					r_number Text PRIMARY KEY,
+					block TEXT)""";
+				stmt.execute(query);
+				for(char c: List.of('A','B','C','D','E','F','G')){
+					for(int i=1;i<21;i++) {
+						stmt.execute("INSERT INTO Rooms (r_number,block) VALUES ('"+c+""+i+"','"+c+"')");
+					}
+				}
+			}
 			String query = """
-				CREATE TABLE IF NOT EXISTS Rooms(
-				r_number Text PRIMARY KEY,
-				block TEXT)""";
-			stmt.execute(query);
-			query = """
 					CREATE TABLE IF NOT EXISTS Occupant( 
 					idNum INTEGER PRIMARY KEY,
 					fname TEXT,
@@ -35,6 +42,7 @@ public class DataManager {
 					state TEXT,
 					room_id Text,
 					FOREIGN KEY (room_id) REFERENCES Rooms (r_number))""";
+			stmt.execute(query);			
 			
 			query ="SELECT name FROM sqlite_master WHERE type='table'";
 			ResultSet rs = stmt.executeQuery(query);
@@ -47,7 +55,7 @@ public class DataManager {
 	}
 	
 	
-	public static void insertOccupant(Occupant p, String room_id){ //Inserts new occupant information into the occupant table
+	public static void insertOccupant(Occupant p){ //Inserts new occupant information into the occupant table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
@@ -57,7 +65,7 @@ public class DataManager {
 							+p.getlName()+"','"
 							+p.getPhoneNumber()+"','"
 							+p.getEmail()+"','"
-							+room_id+"')";
+							+p.getRoom_id()+"')";
 			stmt.execute(query);
 			System.out.println("Insert Successful");
 		}catch (SQLException e) {
@@ -70,7 +78,7 @@ public class DataManager {
 	}
 	
 	
-	public static void updateOccupant(long id, Occupant new_p, String room_id){//Updates an existing record in the Occupant Table
+	public static void updateOccupant(long id, Occupant new_p){//Updates an existing record in the Occupant Table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
@@ -79,7 +87,7 @@ public class DataManager {
 						+",lname='"+new_p.getlName()+"'"
 						+",phoneNumber='"+new_p.getPhoneNumber()+"'"
 						+",email='"+new_p.getEmail()+"'"
-						+",room_id="+room_id+" WHERE idNum="+id; //Missing Room ID Parameter
+						+",room_id='"+new_p.getRoom_id()+"' WHERE idNum= "+id; //Missing Room ID Parameter
 			int num =stmt.executeUpdate(query);
 			if(num==0) {
 				System.out.println("No record with id number "+id+" was found.");
@@ -119,11 +127,11 @@ public class DataManager {
 		}
 	}
 	
-	public static void insertFurniture(Furniture f, String r_id){ //Inserts new furniture information into the occupant table
+	public static void insertFurniture(Furniture f){ //Inserts new furniture information into the occupant table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
-			String query = "INSERT INTO Furniture (type,state,room_id) VALUES ('"+f.getType()+"','"+f.getState()+"','"+r_id+ "')"; 
+			String query = "INSERT INTO Furniture (type,state,room_id) VALUES ('"+f.getType()+"','"+f.getState()+"','"+f.getRoom_id()+ "')"; 
 			stmt.execute(query);
 			System.out.println("Insert Successful");
 		}catch (SQLException e) {
@@ -135,14 +143,14 @@ public class DataManager {
 		}
 	}
 	
-	public static void updateFurniture(long id, Furniture f, String room_id){//Updates an existing record in the Occupant Table
+	public static void updateFurniture(long id, Furniture f){//Updates an existing record in the Occupant Table
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
-			String query = "UPDATE Furniture set idNum="
-						+",type='"+f.getType()+"'"
+			String query = "UPDATE Furniture set"
+						+" type='"+f.getType()+"'"
 						+",state='"+f.getState()+"'"
-						+",room_id="+room_id+" WHERE idNum="+id; //Missing Room ID Parameter
+						+",room_id='"+f.getRoom_id()+"' WHERE id_num="+id; //Missing Room ID Parameter
 			int num =stmt.executeUpdate(query);
 			if(num==0) {
 				System.out.println("No record with id number "+id+" was found.");
@@ -159,25 +167,57 @@ public class DataManager {
 		}
 		
 	}
+	
 	public static ArrayList<Furniture> current_furniture(String room_id){
 		String url= "jdbc:sqlite:Room_Information.db";
 		ArrayList<Furniture> furnitureList = new ArrayList<>();
 		try(Connection conn = DriverManager.getConnection(url);
 			Statement stmt = conn.createStatement()){
-			String query ="SELECT Furniture.id_num, Furniture.type, Furniture.state, Furniture.room_id, Rooms.r_number, Rooms.block"+
+			String query ="SELECT Furniture.id_num, Furniture.type, Furniture.state, Furniture.room_id"+
 						  " FROM Furniture JOIN Rooms ON Furniture.room_id = Rooms.r_number"+
 						  " WHERE Rooms.r_number = '"+room_id+"';";
 			ResultSet rs = stmt.executeQuery(query);
 			while(rs.next()) {
 				furnitureList.add(new Furniture(rs.getString("room_id"),rs.getString("type"),rs.getString("state")));
 			}
-			System.out.println(furnitureList.toString());
+			
 		}catch (SQLException e) {
 			
             System.out.println("Database error: " + e.getMessage());
          
 		}
 		return furnitureList;
+	}
+	
+	public static ArrayList<Occupant> current_Occupants(String room_id){
+		String url= "jdbc:sqlite:Room_Information.db";
+		ArrayList<Occupant> occupantList = new ArrayList<>();
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			String query ="SELECT *"+
+						  " FROM Occupant JOIN Rooms ON Occupant.room_id = Rooms.r_number"+
+						  " WHERE Rooms.r_number = '"+room_id+"';";
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				occupantList.add(new Occupant(rs.getString("fname"),rs.getString("lname"),rs.getInt("idNum"),rs.getString("phoneNumber"),rs.getString("email"),rs.getString("room_id")));
+			}
+		}catch (SQLException e) {
+			
+            System.out.println("Database error: " + e.getMessage());
+         
+		}
+		return occupantList;
+	}
+	
+	public static boolean doesTableExist(Connection conn, String tableName) {
+	    String query = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "';";
+	    try (Statement stmt = conn.createStatement();
+	         ResultSet rs = stmt.executeQuery(query)) {
+	        return rs.next(); // Returns true if the table exists
+	    } catch (SQLException e) {
+	        System.out.println("Error checking table existence: " + e.getMessage());
+	        return false; // Return false if there's an error
+	    }
 	}
 		
 	public static void clearDatabase() {
