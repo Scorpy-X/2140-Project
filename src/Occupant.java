@@ -5,7 +5,7 @@ public class Occupant{
     private int idNum;
     private String phoneNumber;
     private String email;
-    private String room_id;
+    // private String room_id;
 
     //Remember to do Unique Id check, is id number a number less than 20 digits check, and conceptualize phone number formatting, phone number all digits check 
 
@@ -46,6 +46,12 @@ public class Occupant{
 
     public String getEmail() {
         return email;
+    }
+
+    public String getFullName(){
+
+        return fName +" " + lName;
+
     }
     
    

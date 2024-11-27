@@ -200,27 +200,6 @@ public class Room{
 
     //Accessors 
 
-    
-
-
-
-
- 
-
-
-
-
-
-
-
-
-       
-       
-
-
-
-
-
     public String getRoomID() {
         return roomID;
     }
@@ -245,14 +224,7 @@ public class Room{
         return occupantLst;
     }
 
-    // public Occupant getOccupant1() {
-    //     return occupant1;
-    // }
-
-    // public Occupant getOccupant2() {
-    //     return occupant2;
-    // }
-
+    
     
 
 
@@ -293,44 +265,41 @@ public class Room{
     public Furniture getWindow() {              //Use to update Window #1
         return window;
     }
+                                                                            //Furniture set 2
 
-
-
-
-
-    public Furniture getEasyChair2() {                     //Furniture set 2
+    public Furniture getEasyChair2() {          //Use to update Easy Chair #2
         return easyChair2;
     }
 
-    public Furniture getBed2() {
+    public Furniture getBed2() {                //Use to update Bed #2
         return bed2;
     }
 
-    public Furniture getMattrass2() {
+    public Furniture getMattrass2() {           //Use to update Mattrass #2
         return mattrass2;
     }
 
-    public Furniture getCloset2() {
+    public Furniture getCloset2() {             //Use to update Closet #2
         return closet2;
     }
 
-    public Furniture getCoffeeTable2() {
+    public Furniture getCoffeeTable2() {        //Use to update Coffee Table #2
         return coffeeTable2;
     }
 
-    public Furniture getStudyTable2() {
+    public Furniture getStudyTable2() {         //Use to update Study Table #2
         return studyTable2;
     }
 
-    public Furniture getChestOfDraws2() {
+    public Furniture getChestOfDraws2() {       //Use to update Chest of Draws #2
         return chestOfDraws2;
     }
 
-    public Furniture getWall2() {
+    public Furniture getWall2() {               //Use to update Wall #2
         return wall2;
     }
 
-    public Furniture getWindow2() {
+    public Furniture getWindow2() {             //Use to update Window #2
         return window2;
     }
 
@@ -339,7 +308,7 @@ public class Room{
 
     //Mutators
 
-    public boolean addOccupant(Occupant o) {                //Checks if room is full then adds an occupant 
+    public boolean addOccupant(Occupant o) {                //Checks if room is not full then adds an occupant 
         
         if (isRoomFull()!=true){
             this.occupantLst.add(o);
@@ -350,7 +319,7 @@ public class Room{
             return false;    
     }
 
-    public boolean removeOccupant(Occupant o){
+    public boolean removeOccupant(Occupant o){              //Checks if occupant is in room them removes them
         if (occupantLst.contains(o)){
 
             occupantLst.remove(o);
@@ -360,6 +329,8 @@ public class Room{
         else
             return false;
     }
+
+   
 
     
 
@@ -385,6 +356,39 @@ public class Room{
 
         return occupantLst.contains(o);
     }
+
+    public int getFurnitureCount(){
+
+        return furnitureLst.size();
+    }
+
+    public Occupant findOccupantByName(String fName, String lName) {
+
+        if (isRoomEmpty()!=true){
+            for (Occupant occupant : occupantLst) {
+                if (occupant.getfName().equalsIgnoreCase(fName) && occupant.getlName().equalsIgnoreCase(lName)) { // Assuming Occupant has a getName() method
+                    return occupant;
+                }
+            }
+        }
+
+        return null; // Return null if no occupant with the given name is found
+    }
+
+    public Occupant findOccupantByIdNum(int idNum) {
+
+        if (isRoomEmpty()!=true){
+            for (Occupant occupant : occupantLst) {
+                if (occupant.getIdNum()==idNum){ // Assuming Occupant has a getName() method
+                    return occupant;
+                }
+            }
+        }
+
+        return null; // Return null if no occupant with the given name is found
+    }
+
+
 
 
 }
