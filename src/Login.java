@@ -22,12 +22,12 @@ public class Login{
         {   
 
             //Checks if administration is signing in
-            if(username=="adminPass" && users.get(username)==password){
+            if(username.equals("adminPass") && users.get(username).equals(password)){
 
                 return 2;
             }
 
-            else if(users.get(username)==password)
+            else if(users.get(username).equals(password))
             {
                 return 1;
             }
