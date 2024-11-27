@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Room{
 
-    private String roomID;                 //alpha numeric room num with block letter 
+    private String roomID;                 //alphanumeric room num with block letter
     private char block;                   //Single letter with block letter 
     private String blockName; 
 
@@ -408,7 +408,6 @@ public class Room{
                 count =count+1;
             }
         }
-        
         return count;
     }
 

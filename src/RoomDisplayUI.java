@@ -11,7 +11,6 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
     private DefaultTableModel tableModel;
 
 
-    //should take a room as a paramater for display
     public RoomDisplayUI(){
         setTitle("Room Display");
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -163,7 +162,6 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
                 tableModel.addRow(rDetails);
             }
         }
-
     }
 
     private void loadRoomsTable(ArrayList<Room> rooms) {
@@ -184,5 +182,3 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         new RoomDisplayUI();
     }
 }
-
-
