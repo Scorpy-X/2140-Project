@@ -116,11 +116,8 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         disPanel.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
         add(scrollPane);
-        ArrayList<Room> allRooms = new ArrayList<>();
-        for (Block b:TaylorAdmin.getBlocks()) {
-            allRooms.addAll(b.getRooms());
-        }
-        loadRoomsTable(allRooms);
+        ArrayList<Room> rooms = new ArrayList<>(block.getRooms());
+        loadRoomsTable(rooms);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         getContentPane().add(HEADERPANEL, BorderLayout.NORTH);
