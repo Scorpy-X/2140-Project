@@ -1,27 +1,33 @@
 import java.util.ArrayList;
 
+
 public class Main { //Small Demonstration of database methods 
-	public static void main(String[] args){
-		DataManager.clearDatabase();
+	public static void main(String[] args) {
 		DataManager.createDatabase();
-		DataManager.insertOccupant(new Occupant("Justin","Hamilton",620153652,"(876)675-4534","Snailmail.@gmail.com","B2"));
-		DataManager.insertOccupant(new Occupant("Jason","Smith",620153452,"(876)689-4534","jason.smith@gmail.com","B7"));
-		DataManager.insertOccupant(new Occupant("Jackson","Miller",620153892,"(876)689-8934","jackson.smith@gmail.com","B7"));
-		DataManager.updateOccupant(620153452, new Occupant("Jerry","Smith",620153452,"(876)689-4534","jason.smith@gmail.com","B7"));
-		DataManager.insertFurniture(new Furniture("A1","Bed","Fair"));
-		DataManager.insertFurniture(new Furniture("A2","Wall","Poor"));
-		DataManager.updateFurniture("A1","Bed", new Furniture("A1","Bed","Poor"));
-		ArrayList<Furniture> f = DataManager.current_furniture("A1");
-		ArrayList<Occupant> o = DataManager.current_Occupants("B7");
-		for(Furniture f1:f) {
-			System.out.println("Name:"+f1.getType()+" State:"+f1.getState()+" Room Id:"+f1.getRoom_id());
+		ArrayList<Block> b_lst = DataManager.loadData();
+		
+		for(Block b: b_lst){
+			ArrayList<Room> r_lst = b.getRooms();
+			
+			for(Room r: r_lst){
+				ArrayList<Furniture> f_lst = r.getFurnitureLst();
+				ArrayList<Occupant> o_lst = r.getOccupantLst();
+				int i = 0;
+				if (o_lst != null) {
+					for(Occupant o:o_lst) {
+						if(o!=null)
+							System.out.println(o.getfName());
+					}
+				}
+				
+				for(Furniture f: f_lst){
+					System.out.println("In room: "+r.getRoomID()+" f"+i+"'s State: "+f.getState());
+					i++;
+				}
+				
+			}
+			
 		}
-		for(Occupant op:o){ 
-			System.out.println("Name:"+op.getfName()+" "+op.getlName()
-								+" Id Number:"+op.getIdNum()
-								+" Phone Number:" + op.getPhoneNumber()
-								+" Email:" + op.getEmail()
-								+" Room_id:" + op.getRoom_id());
-		}
+		DataManager.saveData(b_lst);
 	}	
 }
