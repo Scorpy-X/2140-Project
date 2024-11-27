@@ -26,11 +26,26 @@ public class Block{
         //     }
         // } 
         
-        
     }
 
     //Accessors
+    public Room findRoom(String roomID){                //Returns room object if room exists
 
+        for(Room room: rooms){
+
+            if(room.getRoomID().equalsIgnoreCase(roomID)){
+                return room;
+            }
+        }
+        
+        return null;
+        
+    }
+
+    public ArrayList<Room> getRooms(){
+
+        return rooms;
+    }
     
 
 
