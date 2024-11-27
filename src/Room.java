@@ -4,7 +4,7 @@ public class Room{
 
     private String roomID;                 //alpha numeric room num with block letter 
     private char block;                   //Single letter with block letter 
-    private String blockName;
+    private String blockName; 
 
     private String roomType;
     
