@@ -13,9 +13,10 @@ public class Login{
         users.put("admin", "adminPass");
     }
 
-    
+
     // Static method to validate login
-    public static int validateLogin(String username, String password) {
+    public static int validateLogin(String username, String password){
+        
         // Check if username exists
         if (users.containsKey(username)) 
         {   
@@ -32,7 +33,7 @@ public class Login{
             }
 
         }
-        
+
         //user not authorized, invalid credentials 
         return 0;
     }
