@@ -36,12 +36,7 @@ public class Room{
     private Furniture studyTable2;
     private Furniture chestOfDraws2;
 
-    public Room(/*String roomNum,char block*/){
-    	// this.roomNum = roomNum;
-    	// this.block = block;
-    	// furnitureLst = new ArrayList<Furniture>();
-        // occupantLst = new ArrayList<Occupant>();
-    }
+    public Room(){}
 
     public Room(String roomID,
                 char block,
@@ -224,11 +219,7 @@ public class Room{
         return occupantLst;
     }
 
-    
-    
-
-
-   
+                                                                //Furniture Set 1
 
     public Furniture getEasyChair() {           //Use to update Easy Chair #1
         return easyChair;
@@ -352,7 +343,7 @@ public class Room{
         
     }
 
-    public boolean isOccupantInRoom(Occupant o){
+    public boolean isOccupantInRoom(Occupant o){                    //Takes an occupant and checks if this occupant is in the room 
 
         return occupantLst.contains(o);
     }
