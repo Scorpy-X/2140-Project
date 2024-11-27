@@ -379,6 +379,65 @@ public class Room{
         return null; // Return null if no occupant with the given name is found
     }
 
+    public int getNumOccupants(){           //Returns the number of occupants in this room
+
+        return occupantLst.size();
+
+    }
+
+    public int getExcellentFurnitureCount(){        //Returns count of excellent condition furniture present in this room
+
+        int count= 0;
+
+        for(Furniture f: furnitureLst){
+            if(f.getState()=="Excellent"){
+                count =count+1;
+            }
+        }
+
+        return count;
+    }
+
+
+    public int getFairFurnitureCount(){             //Returns count of Fair condition furniture present in this room
+
+        int count= 0;
+
+        for(Furniture f: furnitureLst){
+            if(f.getState()=="Fair"){
+                count =count+1;
+            }
+        }
+        
+        return count;
+    }
+
+    public int getPoorFurnitureCount(){             //Returns count of Poor condition furniture present in this room
+
+        int count= 0;
+
+        for(Furniture f: furnitureLst){
+            if(f.getState()=="Poor"){
+                count =count+1;
+            }
+        }
+        
+        return count;
+    }
+
+    public int getMissingFurnitureCount(){          //Returns count of Missing furniture for this room
+
+        int count= 0;
+
+        for(Furniture f: furnitureLst){
+            if(f.getState()=="None"){
+                count =count+1;
+            }
+        }
+        
+        return count;
+    }
+
 
 
 
