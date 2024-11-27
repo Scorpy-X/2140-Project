@@ -205,22 +205,185 @@ public class Room{
 
 
 
-    public boolean addOccupant(Occupant o) {
-        if(DataManager.insertOccupant(o)){
+ 
+
+
+
+
+
+
+
+
+       
+       
+
+
+
+
+
+    public String getRoomID() {
+        return roomID;
+    }
+
+    public char getBlock() {
+        return block;
+    }
+
+    // public String getBlockName() {
+    //     return blockName;
+    // }
+
+    public String getRoomType() {                    //Single or Double
+        return roomType;
+    }
+
+    public ArrayList<Furniture> getFurnitureLst() {
+        return furnitureLst;
+    }
+
+    public ArrayList<Occupant> getOccupantLst() {
+        return occupantLst;
+    }
+
+    // public Occupant getOccupant1() {
+    //     return occupant1;
+    // }
+
+    // public Occupant getOccupant2() {
+    //     return occupant2;
+    // }
+
+    
+
+
+   
+
+    public Furniture getEasyChair() {           //Use to update Easy Chair #1
+        return easyChair;
+    }
+
+    public Furniture getBed() {                 //Use to update Bed #1
+        return bed;
+    }
+
+    public Furniture getMattrass() {            //Use to update Mattrass #1
+        return mattrass;
+    }
+
+    public Furniture getCloset() {              //Use to update Closet #1
+        return closet;
+    }
+
+    public Furniture getCoffeeTable() {         //Use to update Coffee Table #1
+        return coffeeTable;
+    }
+
+    public Furniture getStudyTable() {          //Use to update Study Table #1
+        return studyTable;
+    }
+
+    public Furniture getChestOfDraws() {        //Use to update Chest of Draws #1
+        return chestOfDraws;
+    }
+
+    public Furniture getWall() {                //Use to update Wall #1
+        return wall;
+    }
+
+    public Furniture getWindow() {              //Use to update Window #1
+        return window;
+    }
+
+
+
+
+
+    public Furniture getEasyChair2() {                     //Furniture set 2
+        return easyChair2;
+    }
+
+    public Furniture getBed2() {
+        return bed2;
+    }
+
+    public Furniture getMattrass2() {
+        return mattrass2;
+    }
+
+    public Furniture getCloset2() {
+        return closet2;
+    }
+
+    public Furniture getCoffeeTable2() {
+        return coffeeTable2;
+    }
+
+    public Furniture getStudyTable2() {
+        return studyTable2;
+    }
+
+    public Furniture getChestOfDraws2() {
+        return chestOfDraws2;
+    }
+
+    public Furniture getWall2() {
+        return wall2;
+    }
+
+    public Furniture getWindow2() {
+        return window2;
+    }
+
+
+
+
+    //Mutators
+
+    public boolean addOccupant(Occupant o) {                //Checks if room is full then adds an occupant 
+        
+        if (isRoomFull()!=true){
             this.occupantLst.add(o);
-            return true; //returns true when occcupant is added successfully 
-        }else {
-            return false; //returns false when occupant cannot be added
+            return true;
+        }
+
+        else
+            return false;    
+    }
+
+    public boolean removeOccupant(Occupant o){
+        if (occupantLst.contains(o)){
+
+            occupantLst.remove(o);
+
+            return true;
+        }
+        else
+            return false;
+    }
+
+    
+
+
+    //Checks 
+
+    public boolean isRoomFull(){
+        if (roomType=="Single"){
+            return occupantLst.size()==1;
+        }
+        else{
+            return occupantLst.size()==2;
         }
     }
 
-    public boolean updateOccupant(Occupant o) {
-        if(DataManager.insertOccupant(o)){
-            this.occupantLst.add(o);
-            return true; //returns true when occcupant is added successfully 
-        }else {
-            return false; //returns false when occupant cannot be added
-        }
+    public boolean isRoomEmpty(){
+        
+            return occupantLst.size()==0;
+        
+    }
+
+    public boolean isOccupantInRoom(Occupant o){
+
+        return occupantLst.contains(o);
     }
 
 

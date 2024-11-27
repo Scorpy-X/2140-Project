@@ -2,7 +2,7 @@ public class Occupant{
 
     private String fName;
     private String lName;
-    private long idNum;
+    private int idNum;
     private String phoneNumber;
     private String email;
     private String room_id;
@@ -11,14 +11,14 @@ public class Occupant{
 
     public Occupant(){}
 
-    public Occupant(String fName, String lName, int idNum, String phoneNumber, String email,String room_id){
+    public Occupant(String fName, String lName, int idNum, String phoneNumber, String email){
 
         this.fName = fName;
         this.lName = lName;
         this.idNum = idNum;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.room_id = room_id;
+   
 
     }
 
@@ -32,7 +32,7 @@ public class Occupant{
         return lName;
     }
 
-    public long getIdNum() {
+    public int getIdNum() {
         return idNum;
     }
 
@@ -48,10 +48,7 @@ public class Occupant{
         return email;
     }
     
-    public String getRoom_id() {
-        return room_id;
-    }
-
+   
     
     
 
@@ -65,16 +62,36 @@ public class Occupant{
         this.lName = lName;
     }
 
-    public void setIdNum(long idNum) {
+    public void setIdNum(int idNum) {
         this.idNum = idNum;
     }
 
     public void setPhoneNumber(String phoneNumber) {                              
         this.phoneNumber = phoneNumber;
     }
-    
-    public void setRoom_id(String room_id) {                              
-        this.room_id = room_id;
+
+
+    public void updateAllData(String fName, String lName, int idNum, String phoneNumber, String email){
+
+        if(fName!=null){
+            this.fName = fName;
+        }
+
+        if(lName!=null){
+            this.lName = lName;
+        }
+
+        if (idNum!=0){
+            this.idNum = idNum;
+        }
+
+        if(fName!=null){
+            this.fName = fName;
+        }
+
+        if(fName!=null){
+            this.fName = fName;
+        }
     }
 
 
