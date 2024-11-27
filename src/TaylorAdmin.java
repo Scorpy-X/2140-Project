@@ -7,7 +7,7 @@ public class TaylorAdmin{
 
     public TaylorAdmin(){}
 
-    public TaylorAdmin(){
+    public TaylorAdmin(int x){
 
         ArrayList<Room> BlockARooms = new ArrayList<Room>();
         ArrayList<Room> BlockBRooms = new ArrayList<Room>();
@@ -194,14 +194,15 @@ public class TaylorAdmin{
 
         }
 
-        Block A = new Block('A', BlockARooms);
-        Block B = new Block('B', BlockBRooms);
-        Block C = new Block('C', BlockCRooms);
-        Block D = new Block('D', BlockDRooms);
+        Block blockA = new Block('A', BlockARooms);
+        Block blockB = new Block('B', BlockBRooms);
+        Block blockC = new Block('C', BlockCRooms);
+        Block blockD = new Block('D', BlockDRooms);
 
-        Block E = new Block('E', BlockERooms);
-        Block F = new Block('F', BlockFRooms);
-        Block G = new Block('G', BlockGRooms);
+        Block blockE = new Block('E', BlockERooms);
+        Block blockF = new Block('F', BlockFRooms);
+        Block blockG = new Block('G', BlockGRooms);
+        
     }
 
    
