@@ -24,7 +24,7 @@ public class Main { //Small Demonstration of database methods
 					System.out.println("In room: "+r.getRoomID()+" f"+i+"'s State: "+f.getState());
 					i++;
 				}
-				
+								
 			}
 			
 		}
