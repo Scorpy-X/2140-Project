@@ -15,7 +15,7 @@
             "name": "Tester",
             "request": "launch",
             "mainClass": "Tester",
-            "projectName": "2140-Project_a8e7b980"
+            "projectName": "2140-Project"
         },
         {
             "type": "java",

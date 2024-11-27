@@ -22,7 +22,7 @@ public class Login{
         {   
 
             //Checks if administration is signing in
-            if(username.equals("adminPass") && users.get(username).equals(password)){
+            if(username.equals("admin") && users.get(username).equals(password)){
 
                 return 2;
             }
