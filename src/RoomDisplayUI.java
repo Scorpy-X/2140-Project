@@ -40,7 +40,7 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         JLabel lbSort = new JLabel("Sort by: ");
         lbSort.setForeground(Color.white);
         HEADERPANEL.add(lbSort);
-
+ 
         String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)", "Room Number (Ascending)", "Room Number (Descending)",
                 "Condition (Ascending)", "Condition (Descending)", "Block (Ascending)", "Block (Descending)"};
