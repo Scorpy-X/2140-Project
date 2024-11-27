@@ -11,7 +11,16 @@ import java.util.Map;
 public class DataManager {
 	public static final List<String> SingleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window");
 	public static final List<String> DoubleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window","Easy Chair2","Bed2","Mattrass2","Closet2","Coffee Table2","Study Table2","Chest of Draws2","Wall2","Window2");
-	
+	static {
+        try {
+            // Explicitly load the SQLite JDBC driver
+            Class.forName("org.sqlite.JDBC");
+            System.out.println("SQLite JDBC Driver successfully loaded!");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Failed to load SQLite JDBC Driver: " + e.getMessage());
+            e.printStackTrace();
+        }
+    }
 	public static void createDatabase(){  //Initiailizes Database if Tables not found
 		String url= "jdbc:sqlite:Room_Information.db";
 		try(Connection conn = DriverManager.getConnection(url);
