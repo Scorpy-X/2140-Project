@@ -6,7 +6,9 @@ public class Block{
     private ArrayList<Occupant> occupants;          
 
     private char block;                     //Single character indicating block
-    private String blockName;               //Actual block name eg rooster 
+
+    
+    //private String blockName;               //Actual block name eg rooster 
 
 
     public Block(){}
@@ -47,6 +49,10 @@ public class Block{
         return rooms;
     }
     
+    public char getBlock(){
+
+        return block;
+    }
 
 
   

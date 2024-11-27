@@ -202,7 +202,17 @@ public class TaylorAdmin{
         Block blockE = new Block('E', BlockERooms);
         Block blockF = new Block('F', BlockFRooms);
         Block blockG = new Block('G', BlockGRooms);
-        
+
+        this.blocks.add(blockA);
+        this.blocks.add(blockB);
+        this.blocks.add(blockC);
+        this.blocks.add(blockD);
+
+        this.blocks.add(blockE);
+        this.blocks.add(blockF);
+        this.blocks.add(blockG);
+
+
     }
 
    
