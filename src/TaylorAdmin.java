@@ -203,22 +203,24 @@ public class TaylorAdmin{
         Block blockF = new Block('F', BlockFRooms);
         Block blockG = new Block('G', BlockGRooms);
 
-        this.blocks.add(blockA);
-        this.blocks.add(blockB);
-        this.blocks.add(blockC);
-        this.blocks.add(blockD);
+        blocks.add(blockA);
+        blocks.add(blockB);
+        blocks.add(blockC);
+        blocks.add(blockD);
 
-        this.blocks.add(blockE);
-        this.blocks.add(blockF);
-        this.blocks.add(blockG);
+        blocks.add(blockE);
+        blocks.add(blockF);
+        blocks.add(blockG);
 
+    }
 
+    public TaylorAdmin(ArrayList<Block> storedBlocks) {
+        blocks.addAll(storedBlocks);
     }
 
     public static ArrayList<Block> getBlocks() {
         return blocks;
     }
-
 
     public void saveAllData(){
 
