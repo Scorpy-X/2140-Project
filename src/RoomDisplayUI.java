@@ -3,6 +3,7 @@ import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class RoomDisplayUI extends JFrame implements ActionListener {
@@ -32,8 +33,6 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         disPanel.setPreferredSize(new Dimension(800, 700));
         add(disPanel, BorderLayout.CENTER);
 
-        String[] columnNames = {"Room Number", "Occupant"};
-
         btHome = new JButton("Home");
         btHome.setFocusable(true);
         btHome.addActionListener(this);
@@ -43,13 +42,25 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         lbSort.setForeground(Color.white);
         HEADERPANEL.add(lbSort);
 
-        String[] sortOptions = {"Christian Name (Ascending)", "Christian Name (Descending)", "Surname (Ascending)",
+        String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)", "Room Number (Ascending)", "Room Number (Descending)",
                 "Condition (Ascending)", "Condition (Descending)", "Block (Ascending)", "Block (Descending)"};
         JComboBox cmbSortOptions = new JComboBox(sortOptions);
         cmbSortOptions.setEditable(false);
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
+
+        String[] columnNames = {"Room Number", "Block", "Room Type", "Occupant's First Name", "Occupant's Surname"};
+        tableModel = new DefaultTableModel(columnNames, 0);
+        JTable rTable = new JTable(tableModel);
+        disPanel.add(rTable);
+        JScrollPane scrollPane = new JScrollPane(rTable);
+        add(scrollPane);
+        ArrayList<Room> allRooms = new ArrayList<>();
+        for (Block b:TaylorAdmin.getBlocks()) {
+            allRooms.addAll(b.getRooms());
+        }
+        loadRoomsTable(allRooms);
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         getContentPane().add(HEADERPANEL, BorderLayout.NORTH);
@@ -58,6 +69,46 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
+    }
+
+    private void addToTable(Room room) {
+        if (room.getOccupantLst().isEmpty()) {
+            String roomNum = room.getRoomID();
+            String blockNm = String.valueOf(room.getBlock());
+            String roomType = room.getRoomType();
+
+            String[] rDetails = new String[5];
+            rDetails[0] = roomNum;
+            rDetails[1] = blockNm;
+            rDetails[2] = roomType;
+            rDetails[3] = "";
+            rDetails[4] = "";
+        }
+        else {
+            for (Occupant o:room.getOccupantLst()) {
+                String occupantFName = o.getfName();
+                String occupantLName = o.getlName();
+                String roomNum = room.getRoomID();
+                String blockNm = String.valueOf(room.getBlock());
+                String roomType = room.getRoomType();
+
+                String[] rDetails = new String[5];
+                rDetails[0] = roomNum;
+                rDetails[1] = blockNm;
+                rDetails[2] = roomType;
+                rDetails[3] = occupantFName;
+                rDetails[4] = occupantLName;
+
+                tableModel.addRow(rDetails);
+            }
+        }
+
+    }
+
+    private void loadRoomsTable(ArrayList<Room> rooms) {
+        for (Room r:rooms) {
+            addToTable(r);
+        }
     }
 
     @Override

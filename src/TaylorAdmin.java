@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TaylorAdmin{
 
-    private ArrayList<Block> blocks;
+    private static ArrayList<Block> blocks;
 
 
     public TaylorAdmin(){}
@@ -213,6 +213,10 @@ public class TaylorAdmin{
         this.blocks.add(blockG);
 
 
+    }
+
+    public static ArrayList<Block> getBlocks() {
+        return blocks;
     }
 
 

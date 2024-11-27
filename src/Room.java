@@ -22,7 +22,7 @@ public class Room{
 
     private Furniture easyChair;
     private Furniture bed;
-    private Furniture mattrass;
+    private Furniture mattress;
     private Furniture closet;
     private Furniture coffeeTable;
     private Furniture studyTable;
@@ -30,7 +30,7 @@ public class Room{
 
     private Furniture easyChair2;
     private Furniture bed2;
-    private Furniture mattrass2;
+    private Furniture mattress2;
     private Furniture closet2;
     private Furniture coffeeTable2;
     private Furniture studyTable2;
@@ -43,7 +43,7 @@ public class Room{
                 Occupant occupant1,                      //Room for 1 
                 String easyChairState,                   //Use NULL on occupant if no occupant is in the room
                 String bedState, 
-                String mattrassState, 
+                String mattressState,
                 String closetState,
                 String coffeeTableState, 
                 String studyTableState, 
@@ -71,7 +71,7 @@ public class Room{
 
         this.easyChair = new Furniture(easyChairState);
         this.bed = new Furniture(bedState);
-        this.mattrass = new Furniture(mattrassState);
+        this.mattress = new Furniture(mattressState);
         this.closet = new Furniture(closetState);
         this.coffeeTable = new Furniture(coffeeTableState);
         this.studyTable = new Furniture(studyTableState);
@@ -82,7 +82,7 @@ public class Room{
 
         this.furnitureLst.add(this.easyChair);
         this.furnitureLst.add(this.bed);
-        this.furnitureLst.add(this.mattrass);
+        this.furnitureLst.add(this.mattress);
         this.furnitureLst.add(this.closet);
         this.furnitureLst.add(this.coffeeTable);
         this.furnitureLst.add(this.studyTable);
@@ -100,7 +100,7 @@ public class Room{
 
                 String easyChairState,                  
                 String bedState, 
-                String mattrassState, 
+                String mattressState,
                 String closetState,
                 String coffeeTableState, 
                 String studyTableState, 
@@ -110,7 +110,7 @@ public class Room{
 
                 String easyChairState2,                  
                 String bedState2, 
-                String mattrassState2, 
+                String mattressState2,
                 String closetState2,
                 String coffeeTableState2, 
                 String studyTableState2, 
@@ -148,7 +148,7 @@ public class Room{
 
         this.easyChair = new Furniture(easyChairState);             //First furniture set 
         this.bed = new Furniture(bedState);
-        this.mattrass = new Furniture(mattrassState);
+        this.mattress = new Furniture(mattressState);
         this.closet = new Furniture(closetState);
         this.coffeeTable = new Furniture(coffeeTableState);
         this.studyTable = new Furniture(studyTableState);
@@ -159,7 +159,7 @@ public class Room{
 
         this.furnitureLst.add(this.easyChair);
         this.furnitureLst.add(this.bed);
-        this.furnitureLst.add(this.mattrass);
+        this.furnitureLst.add(this.mattress);
         this.furnitureLst.add(this.closet);
         this.furnitureLst.add(this.coffeeTable);
         this.furnitureLst.add(this.studyTable);
@@ -170,7 +170,7 @@ public class Room{
 
         this.easyChair2 = new Furniture(easyChairState2);         //Second furniture set
         this.bed2 = new Furniture(bedState2);
-        this.mattrass2 = new Furniture(mattrassState2);
+        this.mattress2 = new Furniture(mattressState2);
         this.closet2 = new Furniture(closetState2);
         this.coffeeTable2 = new Furniture(coffeeTableState2);
         this.studyTable2 = new Furniture(studyTableState2);
@@ -181,7 +181,7 @@ public class Room{
 
         this.furnitureLst.add(this.easyChair2);
         this.furnitureLst.add(this.bed2);
-        this.furnitureLst.add(this.mattrass2);
+        this.furnitureLst.add(this.mattress2);
         this.furnitureLst.add(this.closet2);
         this.furnitureLst.add(this.coffeeTable2);
         this.furnitureLst.add(this.studyTable2);
@@ -229,8 +229,8 @@ public class Room{
         return bed;
     }
 
-    public Furniture getMattrass() {            //Use to update Mattrass #1
-        return mattrass;
+    public Furniture getMattress() {            //Use to update Mattress #1
+        return mattress;
     }
 
     public Furniture getCloset() {              //Use to update Closet #1
@@ -266,8 +266,8 @@ public class Room{
         return bed2;
     }
 
-    public Furniture getMattrass2() {           //Use to update Mattrass #2
-        return mattrass2;
+    public Furniture getMattress2() {           //Use to update Mattress #2
+        return mattress2;
     }
 
     public Furniture getCloset2() {             //Use to update Closet #2
@@ -301,7 +301,7 @@ public class Room{
 
     public boolean addOccupant(Occupant o) {                //Checks if room is not full then adds an occupant 
         
-        if (isRoomFull()!=true){
+        if (!isRoomFull()){
             this.occupantLst.add(o);
             return true;
         }
