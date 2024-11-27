@@ -1,6 +1,6 @@
 public class Tester{
 
-
+    public Tester(){}
 public static void main(String[] args) {
         // Example login attempts
         System.out.println("Login attempt 1: " + Login.validateLogin("user1", "password123")); // Should return 1 (success)
