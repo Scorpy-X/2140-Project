@@ -30,7 +30,7 @@ public class EditOccupantUI extends JFrame {
 					remove(idNumLabel);
 					remove(idNumF);
 					remove(submitButton);
-					OccupantFormUI(TaylorAdmin.getOccupantwithIdNumber(idNum),th); 
+					OccupantFormUI(th.getOccupant(idNum),th); 
 				}else {
 					JOptionPane.showMessageDialog(null, "There is no occupant with this id.");
 				}
