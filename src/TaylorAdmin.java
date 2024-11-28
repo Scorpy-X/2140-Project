@@ -46,6 +46,35 @@ public class TaylorAdmin{
         return null;
     }
 
+    public ArrayList<Room> getAllRooms(){
+
+        ArrayList<Room> rlst = new ArrayList<Room>();
+        
+        for(Block b:blocks){
+
+            for(Room r: b.getRooms()){
+                rlst.add(r);
+                
+            }
+        }
+        return rlst;
+    }
+
+    public Occupant getOccupant(int idNum){
+
+        for(Block b: blocks){
+            
+            for(Room r :b.getRooms()){
+                
+                if(r.findOccupantByIdNum(idNum)!=null){
+
+                    return r.findOccupantByIdNum(idNum);
+                }
+            }
+        }
+        return null;
+    }
+
 
     //Mutators
 
@@ -73,6 +102,12 @@ public class TaylorAdmin{
         }
 
         return true;                                               //If not return true 
+    }
+
+    public static boolean isValidPhoneNumber(String str) {                           //Checks if user input is a valid phone number 
+        // Check if the string matches the regex for digits only
+
+        return !str.matches("\\d+"); // \\d+ matches one or more digits
     }
 
 

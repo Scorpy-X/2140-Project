@@ -19,7 +19,6 @@ public class Occupant{
         this.phoneNumber = phoneNumber;
         this.email = email;
    
-
     }
 
     //Accessors
