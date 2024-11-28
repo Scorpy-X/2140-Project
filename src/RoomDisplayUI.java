@@ -175,7 +175,7 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
     }
 
     public static void main(String [] args) {
-        new TaylorAdmin(DataManager.loadData());
+        new TaylorAdmin();
         new RoomDisplayUI();
     }
 }
