@@ -10,7 +10,7 @@ public  class ReportGenerator{
             
        
 
-        public static int excellentFurniture(ArrayList<Block> blocklst){//Total number of excellent furn
+        public static int getExcellentFurniture(ArrayList<Block> blocklst){//Total number of excellent furn
            int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
@@ -21,7 +21,7 @@ public  class ReportGenerator{
             return count;
         }
 
-        public static int FairFurniture(ArrayList<Block> blocklst){//Total number of fair furn
+        public static int getFairFurniture(ArrayList<Block> blocklst){//Total number of fair furn
            
                 int count = 0;
                  for(Block block: blocklst){
@@ -34,7 +34,7 @@ public  class ReportGenerator{
              }
      
 
-        public static int PoorFurniture(ArrayList<Block> blocklst){//Total number of poor furn
+        public static int getPoorFurniture(ArrayList<Block> blocklst){//Total number of poor furn
             int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
@@ -45,7 +45,7 @@ public  class ReportGenerator{
             return count;
         }
 
-        public static int MissingFurniture(ArrayList<Block> blocklst){//Total number of missing furn
+        public static int getMissingFurniture(ArrayList<Block> blocklst){//Total number of missing furn
             int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
@@ -57,47 +57,63 @@ public  class ReportGenerator{
         }
 
         ///////////////////////////////////blocks 
-        public static int excellentFBlock(Block block){//excellent for given block 
+        public static int getExcellentFBlock(char block, ArrayList<Block> blocklst){//excellent for given block 
            int count = 0;
-            for(Room rooms: block.getRooms()){
-                count = rooms.getExcellentFurnitureCount();
+           for(Block blocks: blocklst){
+
+            for(Room rooms: blocks.getRooms()){
+                if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                    count = rooms.getExcellentFurnitureCount();
+                }
+
+                 }
            }
-           
-           
                      return count;
         }
         
-        public static int FairFBlock(Block block){//fairfor block 
+        public static int getFairFBlock(char block, ArrayList<Block> blocklst){//fairfor block 
             int count = 0;
-            for(Room rooms: block.getRooms()){
-                count = rooms.getFairFurnitureCount();
-           }
-           
-           
-                     return count;
+            for(Block blocks: blocklst){
+ 
+             for(Room rooms: blocks.getRooms()){
+                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                     count = rooms.getFairFurnitureCount();
+                 }
+ 
+                  }
+            }
+                      return count;
         }
 
-        public static int PoorFBlock(Block block){///poor for block
+        public static int getPoorFBlock(char block, ArrayList<Block> blocklst){///poor for block
             int count = 0;
-            for(Room rooms: block.getRooms()){
-                count = rooms.getPoorFurnitureCount();
-           }
-           
-           
-                     return count;
+            for(Block blocks: blocklst){
+ 
+             for(Room rooms: blocks.getRooms()){
+                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                     count = rooms.getPoorFurnitureCount();
+                 }
+ 
+                  }
+            }
+                      return count;
         }
 
-        public static int MissingFBlock(Block block){//missing for block 
+        public static int getMissingFBlock(char block, ArrayList<Block> blocklst){//missing for block 
             int count = 0;
-            for(Room rooms: block.getRooms()){
-                count = rooms.getMissingFurnitureCount();
-           }
-           
-           
-                     return count;
+            for(Block blocks: blocklst){
+ 
+             for(Room rooms: blocks.getRooms()){
+                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                     count = rooms.getMissingFurnitureCount();
+                 }
+ 
+                  }
+            }
+                      return count;
         }
 
-        public static int totalOccupants(ArrayList<Block> blocklst){/// total occupants
+        public static int getTotalOccupants(ArrayList<Block> blocklst){/// total occupants
             int count = 0;
                  for(Block block: blocklst){
                      for(Room rooms: block.getRooms()){
@@ -108,14 +124,18 @@ public  class ReportGenerator{
                  return count;
         }
         
-        public static int totalOccupantsBlock(Block block){//Total occupants per block 
+        public static int getTotalOccupantsBlock(char block, ArrayList<Block> blocklst){//Total occupants per block 
             int count = 0;
-            for(Room rooms: block.getRooms()){
-                count = rooms.getNumOccupants();
-           }
-           
-           
-                     return count;
+            for(Block blocks: blocklst){
+ 
+             for(Room rooms: blocks.getRooms()){
+                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                     count = rooms.getNumOccupants();
+                 }
+ 
+                  }
+            }
+                      return count;
         
         }
 
@@ -123,10 +143,14 @@ public  class ReportGenerator{
     public static void main(String[] args) {
         // Example login attempts
      
+<<<<<<< HEAD
         TaylorAdmin TaylorHall = new TaylorAdmin();
+=======
+       // TaylorAdmin TaylorHall = new TaylorAdmin(DataManager.loadData());
+>>>>>>> 709c12ecdc92a38cdf580c627f77dd99fbbb1403
         
    
-        ReportGenerator  ReportGenerator1 = new ReportGenerator();
+       // ReportGenerator  ReportGenerator1 = new ReportGenerator();
        // ReportGenerator1.blockCount();
        // ReportGenerator1.listAllBlocks();
         }
