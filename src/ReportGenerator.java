@@ -2,7 +2,7 @@
 import java.util.ArrayList;
 
 public  class ReportGenerator{
-   // private static TaylorAdmin TaylorHall;
+    //private static TaylorAdmin TaylorHall;
     private static Block blocks;
     
     
@@ -152,10 +152,11 @@ public  class ReportGenerator{
     public static void main(String[] args) {
         // Example login attempts
      
-       // TaylorAdmin TaylorHall = new TaylorAdmin(DataManager.loadData());
-        
-   
-       // ReportGenerator  ReportGenerator1 = new ReportGenerator();
+      ///////////////////////////////////////////// TaylorAdmin TaylorHall = new TaylorAdmin(DataManager.loadData());
+        TaylorAdmin TaylorHall = new TaylorAdmin();
+       // ReportGenerator  ReG1 = new ReportGenerator();
+        ReportGenerator.getExcellentFurniture(TaylorHall.getBlocks());
+
        // ReportGenerator1.blockCount();
        // ReportGenerator1.listAllBlocks();
         }

@@ -19,7 +19,6 @@ public class Occupant{
         this.phoneNumber = phoneNumber;
         this.email = email;
    
-
     }
 
     //Accessors
@@ -75,7 +74,10 @@ public class Occupant{
     public void setPhoneNumber(String phoneNumber) {                              
         this.phoneNumber = phoneNumber;
     }
-
+    
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
     public void updateAllData(String fName, String lName, int idNum, String phoneNumber, String email){
 
