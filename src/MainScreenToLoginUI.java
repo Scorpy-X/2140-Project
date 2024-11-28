@@ -29,7 +29,6 @@ public class MainScreenToLoginUI extends JFrame {
         	}
         
 
-        
         imageLabel = new JLabel();
         imageLabel.setHorizontalAlignment(SwingConstants.CENTER);
         imageLabel.setVerticalAlignment(SwingConstants.CENTER);

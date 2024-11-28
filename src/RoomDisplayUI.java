@@ -43,14 +43,14 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
  
         String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)", "Room Number (Ascending)", "Room Number (Descending)",
-                "Condition (Ascending)", "Condition (Descending)", "Block (Ascending)", "Block (Descending)"};
+                "Condition (Ascending)", "Condition (Descending)"};
         JComboBox cmbSortOptions = new JComboBox(sortOptions);
         cmbSortOptions.setEditable(false);
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
 
-        String[] columnNames = {"Room Number", "Block", "Room Type", "Occupant's First Name", "Occupant's Surname"};
-        tableModel = new DefaultTableModel(columnNames, 0);
+        String[] columnNames = {"Room Number", "Room Type", "Occupant's First Name", "Occupant's Surname"};
+        tableModel = new DefaultTableModel(columnNames, 1);
         JTable rTable = new JTable(tableModel);
         disPanel.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
