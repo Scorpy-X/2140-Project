@@ -31,8 +31,6 @@ public class MainMenuUI extends JFrame implements ActionListener {
         disPanel.setPreferredSize(new Dimension(800, 700));
         add(disPanel, BorderLayout.CENTER);
 
-        
-
         if (accessLevel == 0) {
             System.out.println("Access Level 1");
         }

@@ -70,7 +70,6 @@ public class RoomDisplayUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-
     public RoomDisplayUI(Block block){
         setTitle("Room Display - Block");
         setSize(Toolkit.getDefaultToolkit().getScreenSize());

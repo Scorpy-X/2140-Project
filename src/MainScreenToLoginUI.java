@@ -17,6 +17,7 @@ public class MainScreenToLoginUI extends JFrame {
       
         setTitle("RIMS - Room Inventory Management System");
         setSize(800, 600);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -24,7 +25,8 @@ public class MainScreenToLoginUI extends JFrame {
         ImageIcon imageIcon = new ImageIcon(new File("src/rims.png").getAbsolutePath());
         if (imageIcon.getImageLoadStatus() == MediaTracker.ERRORED) {
         	System.out.println("Image file not found: " + imagePath); 
-        	} else {
+        	}
+        else {
         		originalImage = imageIcon.getImage();
         	}
         

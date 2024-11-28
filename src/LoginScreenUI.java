@@ -12,6 +12,7 @@ public class LoginScreenUI extends JFrame {
     public LoginScreenUI() {
         setTitle("Login - Room Inventory Management System");
         setSize(800, 600);
+        setResizable(false);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
@@ -65,21 +66,16 @@ public class LoginScreenUI extends JFrame {
                 	errorLabel.setText("Invalid username or password.");
                 } else if(validationResult == 1){
                 	dispose();
-                	new RoomDisplayUI();
+                	new MainMenuUI(1);
                 	
                 } else if(validationResult == 2){
                 	dispose();
-                	new RoomDisplayUI();
-                	
+                	new MainMenuUI(2);
                 }
             }
         });
 
         add(panel);
         setVisible(true);
-    }
-
-    public static void main(String[] args) {
-        new LoginScreenUI();
     }
 }
