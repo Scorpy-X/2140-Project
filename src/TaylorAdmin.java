@@ -215,6 +215,25 @@ public class TaylorAdmin{
 
     }
 
+    public int getnumBlocks(){
+        return blocks.size();
+    }
+
+    public ArrayList<Block> getAllBlocks(){
+        return blocks;
+    }
+
+    public TaylorAdmin(ArrayList<Block> storedBlocks) {
+        blocks.addAll(storedBlocks);
+    }
+
+
+    @Override
+    public String toString(){
+        String allBlocks = "Block"+ getAllBlocks();
+            return allBlocks;
+    }
+
 
     public void saveAllData(){
 
