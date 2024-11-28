@@ -138,16 +138,21 @@ public  class ReportGenerator{
                       return count;
         
         }
+        
+
+
+        
+        
+        //hello my version 
+
+  
+     
 
     
     public static void main(String[] args) {
         // Example login attempts
      
-<<<<<<< HEAD
-        TaylorAdmin TaylorHall = new TaylorAdmin();
-=======
        // TaylorAdmin TaylorHall = new TaylorAdmin(DataManager.loadData());
->>>>>>> 709c12ecdc92a38cdf580c627f77dd99fbbb1403
         
    
        // ReportGenerator  ReportGenerator1 = new ReportGenerator();
