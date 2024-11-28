@@ -1,0 +1,42 @@
+public class ReportGenerator{
+
+    Private TaylorAdmin TaylorHall;
+
+
+
+
+public class ReportGenerator(){}
+
+public class ReportGenerator(TaylorAdmin TaylorHall){
+    this.TaylorHall = TaylorHall;
+}
+
+public int blockCount(){//tells the number of blocks
+   return TaylorHall.getnumBlocks();
+}
+
+public String listAllBlocks(){//list all the blocks
+    for(Block block: TaylorHall.getAllBlocks()){
+        return TaylorHall.toString();
+    
+    }
+}
+
+
+ 
+//  int count = 0;
+//  for(Blocks block: TaylorAdmin.getBlock()){
+    
+
+
+
+//  }
+
+
+
+
+}
+
+
+
+public static void main(String[] args) {}

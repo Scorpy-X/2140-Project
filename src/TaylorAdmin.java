@@ -7,7 +7,7 @@ public class TaylorAdmin{
 
     public TaylorAdmin(){}
 
-    public TaylorAdmin(int x){
+    public TaylorAdmin(ArrayList<Block> block){
 
         ArrayList<Room> BlockARooms = new ArrayList<Room>();
         ArrayList<Room> BlockBRooms = new ArrayList<Room>();
