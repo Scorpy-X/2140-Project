@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class TaylorAdmin{
 
-    private static ArrayList<Block> blocks;
+    private ArrayList<Block> blocks;
 
 
     public TaylorAdmin(){
@@ -13,7 +13,7 @@ public class TaylorAdmin{
 
     //Accessors
 
-    public static ArrayList<Block> getBlocks() {
+    public ArrayList<Block> getBlocks() {
         return blocks;
     }
 
@@ -81,7 +81,7 @@ public class TaylorAdmin{
 
     //Checks 
 
-    public static boolean isValidIdNumber(int idNum){
+    public boolean isValidIdNumber(int idNum){
 
         for(Block b:blocks){                                        //Checks if anybody in any room on any block has the same id number 
 

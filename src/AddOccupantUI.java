@@ -56,7 +56,7 @@ public class AddOccupantUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number.");
 				}else if(r.isRoomFull()){
 					JOptionPane.showMessageDialog(null, "Room is already at maximum occupancy");
-				}else if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				}else if(!th.isValidIdNumber(idNum)) {
 					JOptionPane.showMessageDialog(null, "Another Occupant has this ID number");
 				}else {
 					r.addOccupant(new Occupant(fName,lName,idNum,phoneNumber,email));

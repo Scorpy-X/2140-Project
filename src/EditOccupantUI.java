@@ -25,7 +25,7 @@ public class EditOccupantUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				int idNum = Integer.parseInt(idNumF.getText());
-				if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				if(!th.isValidIdNumber(idNum)) {
 					dispose();
 					remove(idNumLabel);
 					remove(idNumF);
@@ -86,7 +86,7 @@ public class EditOccupantUI extends JFrame {
 				int idNum = Integer.parseInt(idNumF.getText());
 				String phoneNumber = phoneNumberF.getText();
 				String email = emailF.getText();
-				if(!TaylorAdmin.isValidIdNumber(idNum)&&idNum!=o.getIdNum()) {
+				if(!th.isValidIdNumber(idNum)&&idNum!=o.getIdNum()) {
 					JOptionPane.showMessageDialog(null, "Another Occupant has this ID number");
 				}else {
 					o.setfName(fName);
