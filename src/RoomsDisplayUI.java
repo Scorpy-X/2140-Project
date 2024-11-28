@@ -8,21 +8,23 @@ import java.util.ArrayList;
 public class RoomsDisplayUI extends JFrame implements ActionListener {
     private final JButton btHome;
     private DefaultTableModel tableModel;
+    private int accessLevel;
 
 
-    public RoomsDisplayUI(){
+    public RoomsDisplayUI(int accessLevel){
         setTitle("Room Display");
+        this.accessLevel = accessLevel;
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
 
         JPanel HEADERPANEL = new JPanel(new FlowLayout());
-        HEADERPANEL.setBackground(Color.black);
+        HEADERPANEL.setBackground(new Color(40, 100, 220));
         HEADERPANEL.setPreferredSize(new Dimension(700, 40));
         add(HEADERPANEL, BorderLayout.NORTH);
 
         JPanel FOOTERPANEL = new JPanel(new FlowLayout());
-        FOOTERPANEL.setBackground(Color.black);
+        FOOTERPANEL.setBackground(new Color(40, 100, 220));
         FOOTERPANEL.setPreferredSize(new Dimension(700, 40));
         add(FOOTERPANEL, BorderLayout.SOUTH);
 
@@ -34,7 +36,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         btHome = new JButton("Home");
         btHome.setFocusable(true);
         btHome.addActionListener(this);
-        HEADERPANEL.add(btHome);
+        FOOTERPANEL.add(btHome);
 
         JLabel lbSort = new JLabel("Sort by: ");
         lbSort.setForeground(Color.white);
@@ -69,7 +71,8 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public RoomsDisplayUI(Block block){
+    public RoomsDisplayUI(Block block, int accessLevel){
+        this.accessLevel = accessLevel;
         setTitle("Room Display - Block");
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -77,12 +80,12 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         setLayout(new BorderLayout());
 
         JPanel HEADERPANEL = new JPanel(new FlowLayout());
-        HEADERPANEL.setBackground(Color.black);
+        HEADERPANEL.setBackground(new Color(40, 100, 220));
         HEADERPANEL.setPreferredSize(new Dimension(700, 40));
         add(HEADERPANEL, BorderLayout.NORTH);
 
         JPanel FOOTERPANEL = new JPanel(new FlowLayout());
-        FOOTERPANEL.setBackground(Color.black);
+        FOOTERPANEL.setBackground(new Color(40, 100, 220));
         FOOTERPANEL.setPreferredSize(new Dimension(700, 40));
         add(FOOTERPANEL, BorderLayout.SOUTH);
 
@@ -94,7 +97,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         btHome = new JButton("Home");
         btHome.setFocusable(true);
         btHome.addActionListener(this);
-        HEADERPANEL.add(btHome);
+        FOOTERPANEL.add(btHome);
 
         JLabel lbSort = new JLabel("Sort by: ");
         lbSort.setForeground(Color.white);
@@ -168,12 +171,10 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btHome) {
-            System.out.println("Home pressed");
+            new MainMenuUI(accessLevel);
         }
     }
 
     public static void main(String [] args) {
-        new TaylorAdmin();
-        new RoomsDisplayUI();
     }
 }

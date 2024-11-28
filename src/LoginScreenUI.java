@@ -3,13 +3,14 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class LoginScreenUI extends JFrame {
+public class LoginScreenUI extends JFrame implements ActionListener {
 
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JLabel errorLabel;
     
     public LoginScreenUI() {
+
         setTitle("Login - Room Inventory Management System");
         setSize(800, 600);
         setResizable(false);
@@ -19,10 +20,12 @@ public class LoginScreenUI extends JFrame {
         JLabel usernameLabel = new JLabel("Username:");
         usernameField = new JTextField();
         usernameField.setMaximumSize(new Dimension(650, 25));
+        usernameField.addActionListener(this);
 
         JLabel passwordLabel = new JLabel("Password:");
         passwordField = new JPasswordField();
         passwordField.setMaximumSize(new Dimension(650, 25));
+        passwordField.addActionListener(this);
 
         JButton loginButton = new JButton("Login");
         loginButton.setMaximumSize(new Dimension(100, 30));
@@ -77,5 +80,26 @@ public class LoginScreenUI extends JFrame {
 
         add(panel);
         setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == usernameField) {
+            System.out.println(e.getActionCommand() + " " + e.getID());
+        }
+        else if (e.getSource() == passwordField) {
+            String username = usernameField.getText();
+            String password = new String(passwordField.getPassword());
+            int validationResult = Login.validateLogin(username, password);
+            if (validationResult == 0){
+            	errorLabel.setText("Invalid username or password.");
+            }
+            else if(validationResult == 1){
+            	dispose();
+            	new MainMenuUI(1);	
+            } else if(validationResult == 2){
+                dispose();
+            	new MainMenuUI(2);
+            };
+        }
     }
 }

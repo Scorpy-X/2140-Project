@@ -5,13 +5,14 @@ import java.awt.event.ActionListener;
 
 public class MainMenuUI extends JFrame implements ActionListener {
     private JButton btLogout, btDisplayRooms, btDisplayOccupants, btAddOccupant, btEditOccupant, btDeleteOccupant, btEditFurniture, btGenReport;
-
+    private int accessLevel;
 
     //Default constructor
     public MainMenuUI() {
     }
 
     public MainMenuUI(int accessLevel) {
+        this.accessLevel = accessLevel;
         setTitle("RIMS - Main Menu");
         setBackground(Color.black);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -138,7 +139,7 @@ public class MainMenuUI extends JFrame implements ActionListener {
         }
         else if (e.getSource() == btDisplayRooms) {
             System.out.println("Display rooms pressed");
-            new RoomsDisplayUI();
+            new RoomsDisplayUI(accessLevel);
             dispose();
         }
         else if (e.getSource() == btDisplayOccupants) {
