@@ -9,7 +9,7 @@ public class EditOccupantUI extends JFrame {
 	private JTextField idNumF;
 	private JTextField phoneNumberF;
 	private JTextField emailF;
-	public void getRoomIDUI(TaylorAdmin th){
+	public void getOccupantIDUI(TaylorAdmin th){
 		setTitle("ID Number of Student to be edited");
 		setSize(380, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -86,7 +86,7 @@ public class EditOccupantUI extends JFrame {
 				int idNum = Integer.parseInt(idNumF.getText());
 				String phoneNumber = phoneNumberF.getText();
 				String email = emailF.getText();
-				if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				if(!TaylorAdmin.isValidIdNumber(idNum)&&idNum!=o.getIdNum()) {
 					JOptionPane.showMessageDialog(null, "Another Occupant has this ID number");
 				}else {
 					o.setfName(fName);
@@ -109,7 +109,7 @@ public class EditOccupantUI extends JFrame {
 		setVisible(true); 
 	} 
 	public static void main(String[] args) { 
-		new EditOccupantUI().getRoomIDUI(new TaylorAdmin()); 
+		new EditOccupantUI().getOccupantIDUI(new TaylorAdmin()); 
 	}
 		
 	
