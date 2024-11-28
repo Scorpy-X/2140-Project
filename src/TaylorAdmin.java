@@ -222,6 +222,19 @@ public class TaylorAdmin{
         return blocks;
     }
 
+    public int getnumBlocks(){
+        return blocks.size();
+    }
+
+
+
+/*
+    @Override
+    public String toString(){
+        String allBlocks = "Block: "+ getAllBlocks();
+            return allBlocks;
+    }*/
+    
     public void saveAllData(){
 
         
