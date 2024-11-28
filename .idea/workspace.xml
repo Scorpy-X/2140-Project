@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="420c27af-42f1-4a11-87e4-3b7b2df0fe44" name="Changes" comment="" />
+    <list default="true" id="420c27af-42f1-4a11-87e4-3b7b2df0fe44" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/2140-Project/MainMenuUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/2140-Project/MainMenuUI.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/2140-Project/Occupant.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/2140-Project/Occupant.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/2140-Project/ReportGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/2140-Project/ReportGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/2140-Project/RoomDisplayUI.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/out/production/2140-Project/TaylorAdmin.class" beforeDir="false" afterPath="$PROJECT_DIR$/src/out/production/2140-Project/TaylorAdmin.class" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,7 +43,7 @@
     "RunOnceActivity.git.unshallow": "true",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ttb/OneDrive/Documents/GitHub/2140-Project/src"
+    "last_opened_file_path": "C:/Users/ttb/OneDrive/Documents/GitHub/2140-Project"
   }
 }]]></component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
