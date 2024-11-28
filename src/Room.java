@@ -2,39 +2,35 @@ import java.util.ArrayList;
 
 public class Room{
 
-    private String roomID;                 //alphanumeric room num with block letter
-    private char block;                   //Single letter with block letter 
-    private String blockName; 
-
-    private String roomType;
+    private String roomID;                  //alphanumeric room num with block letter
+    private char block;                     //Single letter representing block letter 
+    private String roomType;                //Single or Double 
     
     private ArrayList<Furniture> furnitureLst;
-    //private ArrayList<Furniture> furnitureLst2;
     private ArrayList<Occupant> occupantLst;
     private Occupant occupant1;
     private Occupant occupant2;
 
-
-    private Furniture wall;
-    private Furniture window;
-    private Furniture wall2;
-    private Furniture window2;
-
-    private Furniture easyChair;
+            
+    private Furniture easyChair;                //Furniture set 1
     private Furniture bed;
     private Furniture mattress;
     private Furniture closet;
     private Furniture coffeeTable;
     private Furniture studyTable;
     private Furniture chestOfDraws;
+    private Furniture wall;
+    private Furniture window;
 
-    private Furniture easyChair2;
+    private Furniture easyChair2;               //Furniture set 2
     private Furniture bed2;
     private Furniture mattress2;
     private Furniture closet2;
     private Furniture coffeeTable2;
     private Furniture studyTable2;
     private Furniture chestOfDraws2;
+    private Furniture wall2;
+    private Furniture window2;
 
     public Room(){}
 
@@ -328,7 +324,7 @@ public class Room{
 
     //Checks 
 
-    public boolean isRoomFull(){
+    public boolean isRoomFull(){                        //Returns true if room is full and false otherwise
         if (roomType=="Single"){
             return occupantLst.size()==1;
         }
@@ -337,7 +333,7 @@ public class Room{
         }
     }
 
-    public boolean isRoomEmpty(){
+    public boolean isRoomEmpty(){                       //ret
         
             return occupantLst.size()==0;
         
@@ -353,11 +349,16 @@ public class Room{
         return furnitureLst.size();
     }
 
+    /**
+     * @param fName
+     * @param lName
+     * @return Occupant object
+     */
     public Occupant findOccupantByName(String fName, String lName) {
-
+        
         if (isRoomEmpty()!=true){
             for (Occupant occupant : occupantLst) {
-                if (occupant.getfName().equalsIgnoreCase(fName) && occupant.getlName().equalsIgnoreCase(lName)) { // Assuming Occupant has a getName() method
+                if (occupant.getfName().equalsIgnoreCase(fName) && occupant.getlName().equalsIgnoreCase(lName)) { 
                     return occupant;
                 }
             }
@@ -366,6 +367,10 @@ public class Room{
         return null; // Return null if no occupant with the given name is found
     }
 
+    /**
+     * @param idNum A occupant idnumber
+     * @return An occupant object
+     */
     public Occupant findOccupantByIdNum(int idNum) {
 
         if (isRoomEmpty()!=true){
