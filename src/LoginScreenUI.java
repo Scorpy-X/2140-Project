@@ -65,11 +65,11 @@ public class LoginScreenUI extends JFrame {
                 	errorLabel.setText("Invalid username or password.");
                 }else if(validationResult == 1){
                 	dispose();
-                	new RoomDisplayUI();
+                	new RoomDisplayUI(validationResult);
                 	
                 }else if(validationResult == 2){
                 	dispose();
-                	new RoomDisplayUI();
+                	new RoomDisplayUI(validationResult);
                 	
                 }
             }
