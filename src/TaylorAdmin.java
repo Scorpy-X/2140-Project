@@ -17,6 +17,15 @@ public class TaylorAdmin{
         return blocks;
     }
 
+    public Block getBlock(char b){
+        for(Block block:blocks){
+            if(block.getBlock()==b){
+                return block;
+            }
+        }
+        return null;
+    }
+
     public int getnumBlocks(){
         return blocks.size();
     }
@@ -24,6 +33,17 @@ public class TaylorAdmin{
     public void saveAllData(){                                      //Saves system data to text files for persistent storage
 
         DataManager.saveData(blocks);
+    }
+
+    public Room findByRoomIdNum(String roomID){
+        
+        for(Block block: blocks){
+
+            if(block.getRoom(roomID)!=null){
+                return block.getRoom(roomID);
+            }
+        }
+        return null;
     }
 
 

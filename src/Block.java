@@ -22,19 +22,6 @@ public class Block{
     }
 
     //Accessors
-    public Room findRoom(String roomID){                //Returns room object if room exists and NUll otherwise 
-
-        for(Room room: rooms){
-
-            if(room.getRoomID().equalsIgnoreCase(roomID)){
-                return room;
-            }
-        }
-        
-        return null;
-        
-    }
-
     public ArrayList<Room> getRooms(){
 
         return rooms;
@@ -44,5 +31,27 @@ public class Block{
 
         return block;
     }
+
+    public Room getRoom(String roomID){                                 //Return a room if a room by that id is found on the block          
+
+        for(Room r: rooms){
+            if(r.getRoomID().equals(roomID)){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public Room getRoom(int roomNum){                                   //Overloading for more use       
+
+        for(Room r: rooms){
+            if(r.getRoomID().equals(""+block+roomNum)){
+                return r;
+            }
+        }
+        return null;
+    }
+
+    
 
 }
