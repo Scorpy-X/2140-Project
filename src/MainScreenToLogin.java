@@ -2,25 +2,19 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
-public class MainScreenToLogin {
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            new MainScreen();
-        });
-    }
-}
 
-class MainScreen extends JFrame {
+public class MainScreenToLogin extends JFrame {
 
     private JLabel imageLabel;
     private Image originalImage;
     
 
-    public MainScreen() {
+    public MainScreenToLogin() {
       
         setTitle("RIMS - Room Inventory Management System");
         setSize(800, 600);
@@ -28,8 +22,13 @@ class MainScreen extends JFrame {
         setLocationRelativeTo(null);
 
         String imagePath = "rims.png";
-        ImageIcon imageIcon = new ImageIcon(imagePath);
-        originalImage = imageIcon.getImage();
+        ImageIcon imageIcon = new ImageIcon(new File("src/rims.png").getAbsolutePath());
+        if (imageIcon.getImageLoadStatus() == MediaTracker.ERRORED) {
+        	System.out.println("Image file not found: " + imagePath); 
+        	} else {
+        		originalImage = imageIcon.getImage();
+        	}
+        
 
         
         imageLabel = new JLabel();
@@ -58,7 +57,7 @@ class MainScreen extends JFrame {
     
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                //new LoginScreen();
+                new LoginScreen();
                 dispose();
             }
         });
