@@ -290,6 +290,17 @@ public class Room{
         return window2;
     }
 
+    public int getNumOccupants(){           //Returns the number of occupants in this room
+
+        return occupantLst.size();
+
+    }
+    
+    public int getFurnitureCount(){
+
+        return furnitureLst.size();
+    }
+
 
 
 
@@ -344,10 +355,7 @@ public class Room{
         return occupantLst.contains(o);
     }
 
-    public int getFurnitureCount(){
-
-        return furnitureLst.size();
-    }
+    
 
     /**
      * @param fName
@@ -384,11 +392,7 @@ public class Room{
         return null; // Return null if no occupant with the given name is found
     }
 
-    public int getNumOccupants(){           //Returns the number of occupants in this room
-
-        return occupantLst.size();
-
-    }
+    
 
     public int getExcellentFurnitureCount(){        //Returns count of excellent condition furniture present in this room
 
