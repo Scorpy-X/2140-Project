@@ -1,86 +1,103 @@
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 public class DataManager {
-	public static final List<String>SingleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window");
+	public static final List<String> SingleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window");
 	public static final List<String> DoubleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window","Easy Chair2","Bed2","Mattrass2","Closet2","Coffee Table2","Study Table2","Chest of Draws2","Wall2","Window2");
-	public static final List<Character> Single_room_blocks = List.of('A','B','C','D'); 
-	public static final List<Character> Double_room_blocks = List.of('E','F','G'); 
-	
-    public static void createFiles() {
+	static {
         try {
-            
-            File roomsFile = new File("rooms.txt");
-            File occupantsFile = new File("occupants.txt");
-            File furnitureFile = new File("furniture.txt");
-
-            
-            if (!roomsFile.exists() || roomsFile.length() == 0) { //Checks if files exist or are empty
-                roomsFile.createNewFile();
-                // Initialize with some default room data if the file is empty or newly created
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(roomsFile))) {
-                	for(char c:Single_room_blocks){
-                		for(int i=1;i<41;i++)
-                			writer.write(""+c+i+","+c+",Single\n");;
-                	}
-                	for(char c:Double_room_blocks){
-                		for(int i=1;i<21;i++)
-                			writer.write(""+c+i+","+c+",Double\n");;
-                	}
-                    System.out.println("rooms.txt initialized with default data.");
-                }
-            }
-
-            
-            if (!occupantsFile.exists() || occupantsFile.length() == 0) {
-                occupantsFile.createNewFile();
-                // Initialize with some default occupant data if the file is empty or newly created
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(occupantsFile))) {
-                    
-                }
-            }
-
-            // Check and create the furniture.txt file if it doesn't exist or is empty
-            if (!furnitureFile.exists() || furnitureFile.length() == 0) {
-                furnitureFile.createNewFile();
-                // Initialize with some default furniture data if the file is empty or newly created
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(furnitureFile))) {
-                	String single_f = "Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,";
-                	String double_f = "Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,";
-                	for(char c:Single_room_blocks){
-                		for(int i=1;i<41;i++)
-                			writer.write(single_f+""+c+i+"\n");
-                	}
-                	for(char c:Double_room_blocks){
-                		for(int i=1;i<21;i++)
-                			writer.write(double_f+""+c+i+"\n");
-                	}
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error creating or initializing files: " + e.getMessage());
-        }   
+            // Explicitly load the SQLite JDBC driver
+            Class.forName("org.sqlite.JDBC");
+            System.out.println("SQLite JDBC Driver successfully loaded!");
+        } catch (ClassNotFoundException e) {
+            System.err.println("Failed to load SQLite JDBC Driver: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
-    public static ArrayList<Block> loadData() {
-    	DataManager.createFiles();
-        ArrayList<Block> b_lst = new ArrayList<Block>();
+	public static void createDatabase(){  //Initiailizes Database if Tables not found
+		String url= "jdbc:sqlite:Room_Information.db";
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			if(!doesTableExist(conn,"Rooms")) { //Checks if table exists before creating
+				String query = """
+					CREATE TABLE IF NOT EXISTS Rooms(
+					r_number Text PRIMARY KEY,
+					block TEXT,
+					room_type TEXT)""";
+				stmt.execute(query);
+				for(char c: List.of('A','B','C','D')){
+					for(int i=1;i<41;i++) {
+						stmt.execute("INSERT INTO Rooms (r_number,block,room_type) VALUES ('"+c+""+i+"','"+c+"','Single')");
+					}
+				}
+				for(char c: List.of('E','F','G')){
+					for(int i=1;i<21;i++) {
+						stmt.execute("INSERT INTO Rooms (r_number,block,room_type) VALUES ('"+c+""+i+"','"+c+"','Double')");
+					}
+				}
+			}
+			
+			if(!doesTableExist(conn,"Occupant")) { 
+				String query = """
+						CREATE TABLE IF NOT EXISTS Occupant( 
+						idNum INTEGER PRIMARY KEY,
+						fname TEXT,
+						lname TEXT,
+						phoneNumber TEXT,
+						email TEXT,
+						start_date TEXT,
+						end_date TEXT,
+						room_id Text,
+						FOREIGN KEY (room_id) REFERENCES Rooms (r_number))""";
+				stmt.execute(query);
+			}
+			if(!doesTableExist(conn,"Furniture")) {
+			String query = """
+					CREATE TABLE IF NOT EXISTS Furniture(
+					type TEXT,
+					state TEXT,
+					room_id Text,
+					PRIMARY KEY (type, room_id),
+					FOREIGN KEY (room_id) REFERENCES Rooms (r_number))""";
+			stmt.execute(query);
+			for(char c: List.of('A','B','C','D')){
+				for(int i=1;i<41;i++) {
+					String room_id = ""+c+i;
+					for(String s:SingleRoomFurniture_LIST)
+						stmt.execute("INSERT INTO Furniture (type,state,room_id) VALUES ('"+s+"','"+"Fair"+"','"+room_id+"')");
+				}
+			}
+			for(char c: List.of('E','F','G')){
+				for(int i=1;i<21;i++) {
+					String room_id = ""+c+i;
+					for(String s:DoubleRoomFurniture_LIST)
+						stmt.execute("INSERT INTO Furniture (type,state,room_id) VALUES ('"+s+"','"+"Fair"+"','"+room_id+"')");
+				}
+			}
+			}
+			
+		} catch (SQLException e) {
+			System.out.println("An error occurred: "+e.getMessage());
+		}
+	}
+	public static ArrayList<Block> loadData(){
+		DataManager.createDatabase();
+		ArrayList<Block> b_lst = new ArrayList<Block>();
 		ArrayList<Room> r_lst = new ArrayList<Room>();
 		ArrayList<Occupant> o_lst = new ArrayList<Occupant>();
 		Map<String, String> furnituremap = new HashMap<>();
 		String room_id;
-        
-        for(char c:Single_room_blocks){
-        	for(int i=1;i<41;i++) {
-        		room_id = ""+c+i;
-				o_lst = getOccupantsByRoomId(room_id);
+		for(char c: List.of('A','B','C','D')) {
+			for(int i=1;i<41;i++) {
+				room_id = ""+c+i;
+				o_lst = current_Occupants(room_id);
 				furnituremap = getTypeStateMap(room_id);
 				String easyChairState = furnituremap.get("Easy Chair");
 				String bedState = furnituremap.get("Bed");
@@ -96,14 +113,14 @@ public class DataManager {
 				}else{
 					r_lst.add(new Room(room_id,c,o_lst.get(0),easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState));
 				}
-        	}
-        	b_lst.add(new Block(c,r_lst));
+			}
+			b_lst.add(new Block(c,r_lst));
 			r_lst = new ArrayList<Room>();
-        }
-        for(char c: Double_room_blocks){
-        	for(int i=1;i<21;i++) {
-        		room_id = ""+c+i;
-				o_lst = getOccupantsByRoomId(room_id);
+		}
+		for(char c: List.of('E','F','G')) {
+			for(int i=1;i<21;i++) {
+				room_id = ""+c+i;
+				o_lst = current_Occupants(room_id);
 				furnituremap = getTypeStateMap(room_id);
 				String easyChairState = furnituremap.get("Easy Chair");
 				String bedState = furnituremap.get("Bed");
@@ -123,7 +140,6 @@ public class DataManager {
 				String chestOfDrawsState2 = furnituremap.get("Chest of Draws2");
 				String wallState2 = furnituremap.get("Wall2");
 				String windowState2 = furnituremap.get("Window2");
-
 				if(o_lst.size()==0) {
 					r_lst.add(new Room(room_id,c,null,null,easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState,
 							easyChairState2,bedState2,mattrassState2,closetState2,coffeeTableState2,studyTableState2,chestOfDrawsState2,wallState2,windowState2));
@@ -135,120 +151,178 @@ public class DataManager {
 							easyChairState2,bedState2,mattrassState2,closetState2,coffeeTableState2,studyTableState2,chestOfDrawsState2,wallState2,windowState2));
 				}
 			}
-        	b_lst.add(new Block(c,r_lst));
+			b_lst.add(new Block(c,r_lst)); 
 			r_lst = new ArrayList<Room>();
-        }
-        return b_lst;
-    }
-    
-    public static void saveData(ArrayList<Block> block_lst) {
-        try (BufferedWriter roomWriter = new BufferedWriter(new FileWriter("rooms.txt"));
-             BufferedWriter occupantWriter = new BufferedWriter(new FileWriter("occupants.txt"));
-             BufferedWriter furnitureWriter = new BufferedWriter(new FileWriter("furniture.txt"))) {
+		}
+		
+		return b_lst;
+	}
+	 
+	public static void saveData(ArrayList<Block> block_lst){
+		DataManager.clearTables();
+		for(Block b: block_lst){
+			ArrayList<Room> r_lst = b.getRooms();
+			for(Room r: r_lst){
+				ArrayList<Furniture> f_lst = r.getFurnitureLst();
+				ArrayList<Occupant> o_lst = r.getOccupantLst();
+				int i=0;
+				if (o_lst != null) {
+					for(Occupant o:o_lst) {
+						if(o!=null)
+							DataManager.insertOccupant(o,r.getRoomID());
+					}
+				}
+				if(List.of('A', 'B', 'C', 'D').contains(r.getBlock())){
+					for(String s:SingleRoomFurniture_LIST){
+						updateFurniture(r.getRoomID(),s,f_lst.get(i).getState());
+						i++;
+					} 
+				}else{
+					for(String s:DoubleRoomFurniture_LIST){
+						updateFurniture(r.getRoomID(),s,f_lst.get(i).getState());
+						i++;
+					}
+				}
+			}
+			
+		}		
+	}
+	
+	private static Map<String, String> getTypeStateMap(String room_id) {
+	    String url = "jdbc:sqlite:Room_Information.db";
+	    Map<String, String> typetoStateMap = new HashMap<>();
 
-            for (Block b : block_lst) {
-                ArrayList<Room> r_lst = b.getRooms();
-                for (Room r : r_lst) {
-                    
-                    roomWriter.write(r.getRoomID() + "," + r.getBlock() + "," + r.getRoomType()); // Save room details
-                    roomWriter.newLine();
+	    try (Connection conn = DriverManager.getConnection(url);
+	         Statement stmt = conn.createStatement()) {
+	         
+	        String query = "SELECT type, state FROM Furniture WHERE room_id ='" + room_id + "'";
+	        ResultSet rs = stmt.executeQuery(query);
 
-                    
-                    if (r.getOccupantLst() != null) {
-                        for (Occupant o : r.getOccupantLst()) {  //Save Occupant details
-                            occupantWriter.write(o.getIdNum() + "," + o.getfName() + "," + o.getlName() + ","
-                                    + o.getPhoneNumber() + "," + o.getEmail() + "," + r.getRoomID());
-                            occupantWriter.newLine();
-                        }
-                    }
+	        while (rs.next()) {
+	            String type = rs.getString("type");
+	            String state = rs.getString("state");
+	            typetoStateMap.put(type, state);
+	        }
 
-                    
-                    ArrayList<Furniture> f_lst = r.getFurnitureLst();
-                    for (Furniture f : f_lst) { 
-                        furnitureWriter.write(f.getState() + "," ); // Save furniture details
-                        
-                    }
-                    furnitureWriter.write(r.getRoomID());
-                    furnitureWriter.newLine();
-                }
+	    } catch (SQLException e) {
+	        System.out.println("Database error: " + e.getMessage());
+	    }
+	    return typetoStateMap;
+	}
+	
+	public static boolean insertOccupant(Occupant p, String room_id){ //Inserts new occupant information into the occupant table
+		String url= "jdbc:sqlite:Room_Information.db";
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			String query = "INSERT INTO Occupant (idNum,fname,lname,phoneNumber,email,room_id) VALUES ("
+							+p.getIdNum()+",'"
+							+p.getfName()+"','"
+							+p.getlName()+"','"
+							+p.getPhoneNumber()+"','"
+							+p.getEmail()+"','"
+							+room_id+"')";
+			stmt.execute(query);
+			return true;
+		}catch (SQLException e) {
+			if (e.getMessage().contains("UNIQUE constraint failed")) {
+                System.out.println("Error: Duplicate ID Number. Entry already exists.");
+            } else {
+                System.out.println("Database error: " + e.getMessage());
             }
-            System.out.println("Data saved successfully.");
-        } catch (IOException e) {
-            System.out.println("Error saving data: " + e.getMessage());
-        }
-    }
-    
-    
-    public static ArrayList<Occupant> getOccupantsByRoomId(String roomId) {
-        ArrayList<Occupant> occupantsList = new ArrayList<>();
-        
-        // Read the occupants file
-        try (BufferedReader reader = new BufferedReader(new FileReader("occupants.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-               
-                if (parts.length == 6) {
-                    String idnum = parts[0].trim();
-                    String fname = parts[1];
-                    String lname = parts[2];
-                    String phoneNumber = parts[3];
-                    String email = parts[4];
-                    String room = parts[5].trim();
-                    
-                    // Check if the room ID matches the input room ID
-                    if (room.equals(roomId)) {
-                        occupantsList.add(new Occupant(fname,lname,Integer.parseInt(idnum),phoneNumber,email));
-                    }
-                }
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading occupants file: " + e.getMessage());
-        }
-        
-        return occupantsList;
-    }
-    
-    public static Map<String,String> getTypeStateMap(String roomId) {
-    	Map<String, String> typetoStateMap = new HashMap<>();
+			return false;
+		}
+	}
+	
+	public static void clearTables() {
+	    String url = "jdbc:sqlite:Room_Information.db";
 
-        
-        // Read the occupants file
-        try (BufferedReader reader = new BufferedReader(new FileReader("furniture.txt"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-               
-                if (parts.length == 10) {
-                    String room = parts[9].trim();
-                    
-                    // Check if the room ID matches the input room ID
-                    if (room.equals(roomId)) {
-                    	int i = 0;
-                    	for(String s: SingleRoomFurniture_LIST) {
-                    		typetoStateMap.put(s,parts[i]);
-                    		i++;
-                    	}
-                    	break;  
-                    }
-                }else if(parts.length == 19) {
-                	String room = parts[18].trim();
-                    
-                    // Check if the room ID matches the input room ID
-                    if (room.equals(roomId)) {
-                    	int i_2 = 0;
-                    	for(String s: DoubleRoomFurniture_LIST) {
-                    		typetoStateMap.put(s,parts[i_2]);
-                    		i_2++;
-                    	}
-                    	break;  
-                    }
-                }
+	    try (Connection conn = DriverManager.getConnection(url);
+	         Statement stmt = conn.createStatement()) {
+
+
+	        // Delete all records from the Occupant table
+	        String clearOccupantQuery = "DELETE FROM Occupant";
+	        stmt.executeUpdate(clearOccupantQuery);
+	        System.out.println("Occupant table cleared.");
+
+	    } catch (SQLException e) {
+	        System.out.println("Database error: " + e.getMessage());
+	    }
+	}
+	
+
+	
+	public static void updateFurniture(String room_id, String type, String state){//Updates an existing record in the Occupant Table
+		String url= "jdbc:sqlite:Room_Information.db";
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			String query = "UPDATE Furniture set"
+						+" state='"+state+"'"
+						+" WHERE room_id='"+room_id+"' AND type ='"+type+"'"; //Missing Room ID Parameter
+			int num =stmt.executeUpdate(query);
+			if(num==0) {
+				System.out.println("No furniture record of type"+type+" was found in room with id "+room_id);
+			}else{
+				//System.out.println("Update Successful");
+			}
+			
+		}catch (SQLException e) {
+			if (e.getMessage().contains("UNIQUE constraint failed")) {
+                System.out.println("Error: Duplicate ID Number. Entry already exists.");
+            } else {
+                System.out.println("Database error: " + e.getMessage());
             }
-        } catch (IOException e) {
-            System.out.println("Error reading occupants file: " + e.getMessage());
-        }
-        
-        return typetoStateMap;
-    }
-}
+		}
+		
+	}
+	
+	
+	public static ArrayList<Occupant> current_Occupants(String room_id){
+		String url= "jdbc:sqlite:Room_Information.db";
+		ArrayList<Occupant> occupantList = new ArrayList<>();
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			String query ="SELECT *"+
+						  " FROM Occupant JOIN Rooms ON Occupant.room_id = Rooms.r_number"+
+						  " WHERE Rooms.r_number = '"+room_id+"';";
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next()) {
+				occupantList.add(new Occupant(rs.getString("fname"),rs.getString("lname"),rs.getInt("idNum"),rs.getString("phoneNumber"),rs.getString("email")));
+			}
+		}catch (SQLException e) {
+			
+            System.out.println("Database error: " + e.getMessage());
+         
+		}
+		return occupantList;
+	}
+	
+	public static boolean doesTableExist(Connection conn, String tableName) {
+	    String query = "SELECT name FROM sqlite_master WHERE type='table' AND name='" + tableName + "';";
+	    try (Statement stmt = conn.createStatement();
+	         ResultSet rs = stmt.executeQuery(query)) {
+	        return rs.next(); // Returns true if the table exists
+	    } catch (SQLException e) {
+	        System.out.println("Error checking table existence: " + e.getMessage());
+	        return false; // Return false if there's an error
+	    }
+	}
+	
+	
+		
+	public static void clearDatabase() {
+		String url= "jdbc:sqlite:Room_Information.db";
+		try(Connection conn = DriverManager.getConnection(url);
+			Statement stmt = conn.createStatement()){
+			String query = "DROP TABLE IF EXISTS Furniture";
+			stmt.execute(query);
+			query = "DROP TABLE IF EXISTS Rooms";
+			stmt.execute(query);
+			query = "DROP TABLE IF EXISTS Occupant";
+			stmt.execute(query);
+		}catch (SQLException e) {
+			System.out.println("Database error: " + e.getMessage());
+		}
+		
+	}
+}//Just updated
