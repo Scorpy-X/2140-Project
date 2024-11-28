@@ -27,7 +27,10 @@ public class EditOccupantUI extends JFrame {
 				int idNum = Integer.parseInt(idNumF.getText());
 				if(!TaylorAdmin.isValidIdNumber(idNum)) {
 					dispose();
-					//EditOccupantUI.OccupantFormUI(TaylorAdmin.getOccupantwithid(idNum),th); 
+					remove(idNumLabel);
+					remove(idNumF);
+					remove(submitButton);
+					OccupantFormUI(TaylorAdmin.getOccupantwithIdNumber(idNum),th); 
 				}else {
 					JOptionPane.showMessageDialog(null, "There is no occupant with this id.");
 				}
@@ -46,7 +49,7 @@ public class EditOccupantUI extends JFrame {
 		setSize(400, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
-		setLayout(new GridLayout(6, 2, 10, 10)); 
+		setLayout(new GridLayout(7, 2, 10, 10)); 
 		
 		JLabel fNameLabel = new JLabel("First Name:");
 		fNameF = new JTextField();
@@ -58,7 +61,12 @@ public class EditOccupantUI extends JFrame {
 		phoneNumberF = new JTextField();
 		JLabel emailLabel = new JLabel("Email:");
 		emailF = new JTextField();
-		JButton submitButton = new JButton("Submit"); 
+		JButton submitButton = new JButton("Submit");
+		fNameF.setText(o.getfName());
+		lNameF.setText(o.getlName());
+		idNumF.setText(o.getIdNumstr());
+		phoneNumberF.setText(o.getPhoneNumber());
+		emailF.setText(o.getEmail());
 		add(fNameLabel);
 		add(fNameF);
 		add(lNameLabel);
@@ -73,24 +81,22 @@ public class EditOccupantUI extends JFrame {
 		submitButton.addActionListener(new ActionListener() { 
 			public void actionPerformed(ActionEvent e) {
 				try {
-				String room_id = room_idF.getText();
 				String fName = fNameF.getText(); 
 				String lName = lNameF.getText(); 
 				int idNum = Integer.parseInt(idNumF.getText());
 				String phoneNumber = phoneNumberF.getText();
 				String email = emailF.getText();
-				Room r = th.findByRoomIdNum(room_id);
-				if(r==null) {
-					JOptionPane.showMessageDialog(null, "Please enter a valid room number.");
-				}else if(r.isRoomFull()){
-					JOptionPane.showMessageDialog(null, "Room is already at maximum occupancy");
-				}else if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				if(!TaylorAdmin.isValidIdNumber(idNum)) {
 					JOptionPane.showMessageDialog(null, "Another Occupant has this ID number");
 				}else {
-					r.addOccupant(new Occupant(fName,lName,idNum,phoneNumber,email));
-					JOptionPane.showMessageDialog(null, "Occupant Added Successfully");
+					o.setfName(fName);
+					o.setlName(lName);
+					o.setIdNum(idNum);
+					o.setPhoneNumber(phoneNumber);
+					o.setEmail(email);
+					JOptionPane.showMessageDialog(null, "Occupant Edited Successfully");
 					dispose();
-                	//new MainMenuUI();
+                	new MainMenuUI();
 				}
 				
 				}catch(NumberFormatException nfe){
