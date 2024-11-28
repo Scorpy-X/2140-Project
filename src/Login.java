@@ -26,7 +26,8 @@ public class Login{
 
                 return 2;
             }
-
+            
+            //Checks if it is student worker or secretary signing in
             else if(users.get(username).equals(password))
             {
                 return 1;

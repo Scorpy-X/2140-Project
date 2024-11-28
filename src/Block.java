@@ -18,20 +18,11 @@ public class Block{
 
         this.rooms = rooms;
         this.block = block;
-
-        // for(Room room: rooms){                              //Iterates through the arraylist of rooms and adds all occupants to an arraylist 
-
-        //     if(room.isRoomEmpty()!=true){
-        //         for(Occupant o: room.getOccupantLst()){
-        //             occupants.add(o);
-        //         }
-        //     }
-        // } 
         
     }
 
     //Accessors
-    public Room findRoom(String roomID){                //Returns room object if room exists
+    public Room findRoom(String roomID){                //Returns room object if room exists and NUll otherwise 
 
         for(Room room: rooms){
 
@@ -53,12 +44,5 @@ public class Block{
 
         return block;
     }
-
-
-  
-
-
-    
-
 
 }
