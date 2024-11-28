@@ -84,7 +84,7 @@ public class LoginScreenUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == usernameField) {
-            System.out.println(e.getActionCommand() + " " + e.getID());
+            passwordField.requestFocusInWindow();
         }
         else if (e.getSource() == passwordField) {
             String username = usernameField.getText();
