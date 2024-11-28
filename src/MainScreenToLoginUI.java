@@ -8,13 +8,13 @@ import java.awt.event.ComponentEvent;
 
 
 public class MainScreenToLoginUI extends JFrame {
-
+    private TaylorAdmin database;
     private JLabel imageLabel;
     private Image originalImage;
     
 
-    public MainScreenToLoginUI() {
-      
+    public MainScreenToLoginUI(TaylorAdmin db) {
+        this.database = db;
         setTitle("RIMS - Room Inventory Management System");
         setSize(800, 600);
         setResizable(false);
@@ -57,7 +57,7 @@ public class MainScreenToLoginUI extends JFrame {
     
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                new LoginScreenUI();
+                new LoginScreenUI(database);
                 dispose();
             }
         });

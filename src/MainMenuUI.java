@@ -6,13 +6,15 @@ import java.awt.event.ActionListener;
 public class MainMenuUI extends JFrame implements ActionListener {
     private JButton btLogout, btDisplayRooms, btDisplayOccupants, btAddOccupant, btEditOccupant, btDeleteOccupant, btEditFurniture, btGenReport;
     private int accessLevel;
+    private TaylorAdmin database;
 
     //Default constructor
     public MainMenuUI() {
     }
 
-    public MainMenuUI(int accessLevel) {
+    public MainMenuUI(TaylorAdmin db, int accessLevel) {
         this.accessLevel = accessLevel;
+        this.database = db;
         setTitle("RIMS - Main Menu");
         setBackground(Color.black);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -134,19 +136,18 @@ public class MainMenuUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btLogout) {
-            new LoginScreenUI();
+            new LoginScreenUI(database);
             dispose();
         }
         else if (e.getSource() == btDisplayRooms) {
-            System.out.println("Display rooms pressed");
-            new RoomsDisplayUI(accessLevel);
+            new RoomsDisplayUI(database, accessLevel);
             dispose();
         }
         else if (e.getSource() == btDisplayOccupants) {
             System.out.println("Display occupant pressed");
         }
         else if (e.getSource() == btAddOccupant) {
-            System.out.println("Add occupant pressed");
+            new AddOccupantUI();
         }
         else if (e.getSource() == btEditOccupant) {
             System.out.println("Edit occupants pressed");
@@ -160,9 +161,5 @@ public class MainMenuUI extends JFrame implements ActionListener {
         else if (e.getSource() == btGenReport) {
             System.out.println("Generate report pressed");
         }
-    }
-
-    public static void main(String[] args) {
-        new MainMenuUI(1);
     }
 }

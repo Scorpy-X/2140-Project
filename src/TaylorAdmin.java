@@ -79,9 +79,6 @@ public class TaylorAdmin{
     //Mutators
 
 
-
-
-
     //Checks 
 
     public static boolean isValidIdNumber(int idNum){
@@ -109,12 +106,6 @@ public class TaylorAdmin{
 
     //     return !str.matches("\\d+"); // \\d+ matches one or more digits
     // }
-
-
-
-   
-
-
 
 
     /*
