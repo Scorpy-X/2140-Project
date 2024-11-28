@@ -16,7 +16,7 @@ public class DataManager {
 	public static final List<Character> Double_room_blocks = List.of('E','F','G'); 
 	
     public static void createFiles() {
-        try {
+        try { 
             
             File roomsFile = new File("rooms.txt");
             File occupantsFile = new File("occupants.txt");
@@ -72,71 +72,61 @@ public class DataManager {
     public static ArrayList<Block> loadData() {
     	DataManager.createFiles();
         ArrayList<Block> b_lst = new ArrayList<Block>();
-		ArrayList<Room> r_lst = new ArrayList<Room>();
-		ArrayList<Occupant> o_lst = new ArrayList<Occupant>();
-		Map<String, String> furnituremap = new HashMap<>();
+		ArrayList<Room> r_lst;
+		ArrayList<Occupant> o_lst;
+		Map<String, String> furnituremap;
 		String room_id;
         
         for(char c:Single_room_blocks){
+        	r_lst = new ArrayList<>();
         	for(int i=1;i<41;i++) {
         		room_id = ""+c+i;
 				o_lst = getOccupantsByRoomId(room_id);
 				furnituremap = getTypeStateMap(room_id);
-				String easyChairState = furnituremap.get("Easy Chair");
-				String bedState = furnituremap.get("Bed");
-				String mattrassState = furnituremap.get("Mattrass");
-				String closetState = furnituremap.get("Closet");
-				String coffeeTableState = furnituremap.get("Coffee Table");
-				String studyTableState = furnituremap.get("Study Table");
-				String chestOfDrawsState = furnituremap.get("Chest of Draws");
-				String wallState = furnituremap.get("Wall");
-				String windowState = furnituremap.get("Window");
-				if(o_lst.size()==0) {
-					r_lst.add(new Room(room_id,c,null,easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState));
-				}else{
-					r_lst.add(new Room(room_id,c,o_lst.get(0),easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState));
-				}
-        	}
+				getTypeStateMap(room_id); r_lst.add(new Room(room_id, c,
+						o_lst.size() > 0 ? o_lst.get(0) : null,
+						furnituremap.getOrDefault("Easy Chair", "Fair"),
+						furnituremap.getOrDefault("Bed", "Fair"),
+						furnituremap.getOrDefault("Mattrass", "Fair"),
+						furnituremap.getOrDefault("Closet", "Fair"),
+						furnituremap.getOrDefault("Coffee Table", "Fair"),
+						furnituremap.getOrDefault("Study Table", "Fair"),
+						furnituremap.getOrDefault("Chest of Draws", "Fair"),
+						furnituremap.getOrDefault("Wall", "Fair"),
+						furnituremap.getOrDefault("Window", "Fair")));
+			}
         	b_lst.add(new Block(c,r_lst));
-			r_lst = new ArrayList<Room>();
         }
+        
         for(char c: Double_room_blocks){
+        	r_lst = new ArrayList<>();
         	for(int i=1;i<21;i++) {
         		room_id = ""+c+i;
 				o_lst = getOccupantsByRoomId(room_id);
 				furnituremap = getTypeStateMap(room_id);
-				String easyChairState = furnituremap.get("Easy Chair");
-				String bedState = furnituremap.get("Bed");
-				String mattrassState = furnituremap.get("Mattrass");
-				String closetState = furnituremap.get("Closet");
-				String coffeeTableState = furnituremap.get("Coffee Table");
-				String studyTableState = furnituremap.get("Study Table");
-				String chestOfDrawsState = furnituremap.get("Chest of Draws");
-				String wallState = furnituremap.get("Wall");
-				String windowState = furnituremap.get("Window");
-				String easyChairState2 = furnituremap.get("Easy Chair2");
-				String bedState2 = furnituremap.get("Bed2");
-				String mattrassState2 = furnituremap.get("Mattrass2");
-				String closetState2 = furnituremap.get("Closet2");
-				String coffeeTableState2 = furnituremap.get("Coffee Table2");
-				String studyTableState2 = furnituremap.get("Study Table2");
-				String chestOfDrawsState2 = furnituremap.get("Chest of Draws2");
-				String wallState2 = furnituremap.get("Wall2");
-				String windowState2 = furnituremap.get("Window2");
-
-				if(o_lst.size()==0) {
-					r_lst.add(new Room(room_id,c,null,null,easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState,
-							easyChairState2,bedState2,mattrassState2,closetState2,coffeeTableState2,studyTableState2,chestOfDrawsState2,wallState2,windowState2));
-				}else if(o_lst.size()==1){
-					r_lst.add(new Room(room_id,c,o_lst.get(0),null,easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState,
-							easyChairState2,bedState2,mattrassState2,closetState2,coffeeTableState2,studyTableState2,chestOfDrawsState2,wallState2,windowState2));
-				}else{
-					r_lst.add(new Room(room_id,c,o_lst.get(0),o_lst.get(1),easyChairState,bedState,mattrassState,closetState,coffeeTableState,studyTableState,chestOfDrawsState,wallState,windowState,
-							easyChairState2,bedState2,mattrassState2,closetState2,coffeeTableState2,studyTableState2,chestOfDrawsState2,wallState2,windowState2));
-				}
+				r_lst.add(new Room(room_id, c,
+				o_lst.size() > 0 ? o_lst.get(0) : null,
+				o_lst.size() > 1 ? o_lst.get(1) : null,
+				furnituremap.getOrDefault("Easy Chair", "Fair"),
+				furnituremap.getOrDefault("Bed", "Fair"),
+				furnituremap.getOrDefault("Mattrass", "Fair"),
+				furnituremap.getOrDefault("Closet", "Fair"),
+				furnituremap.getOrDefault("Coffee Table", "Fair"),
+				furnituremap.getOrDefault("Study Table", "Fair"),
+				furnituremap.getOrDefault("Chest of Draws", "Fair"),
+				furnituremap.getOrDefault("Wall", "Fair"),
+				furnituremap.getOrDefault("Window", "Fair"),
+				furnituremap.getOrDefault("Easy Chair2", "Fair"),
+				furnituremap.getOrDefault("Bed2", "Fair"),
+				furnituremap.getOrDefault("Mattrass2", "Fair"),
+				furnituremap.getOrDefault("Closet2", "Fair"),
+				furnituremap.getOrDefault("Coffee Table2", "Fair"),
+				furnituremap.getOrDefault("Study Table2", "Fair"),
+				furnituremap.getOrDefault("Chest of Draws2", "Fair"),
+				furnituremap.getOrDefault("Wall2", "Fair"),
+				furnituremap.getOrDefault("Window2", "Fair")));
 			}
         	b_lst.add(new Block(c,r_lst));
-			r_lst = new ArrayList<Room>();
         }
         return b_lst;
     }
@@ -149,11 +139,9 @@ public class DataManager {
             for (Block b : block_lst) {
                 ArrayList<Room> r_lst = b.getRooms();
                 for (Room r : r_lst) {
-                    
                     roomWriter.write(r.getRoomID() + "," + r.getBlock() + "," + r.getRoomType()); // Save room details
                     roomWriter.newLine();
 
-                    
                     if (r.getOccupantLst() != null) {
                         for (Occupant o : r.getOccupantLst()) {  //Save Occupant details
                             occupantWriter.write(o.getIdNum() + "," + o.getfName() + "," + o.getlName() + ","
@@ -162,7 +150,6 @@ public class DataManager {
                         }
                     }
 
-                    
                     ArrayList<Furniture> f_lst = r.getFurnitureLst();
                     for (Furniture f : f_lst) { 
                         furnitureWriter.write(f.getState() + "," ); // Save furniture details
@@ -190,14 +177,15 @@ public class DataManager {
                
                 if (parts.length == 6) {
                     String idnum = parts[0].trim();
-                    String fname = parts[1];
-                    String lname = parts[2];
-                    String phoneNumber = parts[3];
-                    String email = parts[4];
+                    String fname = parts[1].trim();
+                    String lname = parts[2].trim();
+                    String phoneNumber = parts[3].trim();
+                    String email = parts[4].trim();
                     String room = parts[5].trim();
                     
                     // Check if the room ID matches the input room ID
                     if (room.equals(roomId)) {
+                    	//Create and add that occupant to the list
                         occupantsList.add(new Occupant(fname,lname,Integer.parseInt(idnum),phoneNumber,email));
                     }
                 }
@@ -225,10 +213,9 @@ public class DataManager {
                     
                     // Check if the room ID matches the input room ID
                     if (room.equals(roomId)) {
-                    	int i = 0;
-                    	for(String s: SingleRoomFurniture_LIST) {
-                    		typetoStateMap.put(s,parts[i]);
-                    		i++;
+                    	
+                    	for(int i=0;i<SingleRoomFurniture_LIST.size();i++){
+                    		typetoStateMap.put(SingleRoomFurniture_LIST.get(i),parts[i].trim());
                     	}
                     	break;  
                     }
@@ -237,10 +224,8 @@ public class DataManager {
                     
                     // Check if the room ID matches the input room ID
                     if (room.equals(roomId)) {
-                    	int i_2 = 0;
-                    	for(String s: DoubleRoomFurniture_LIST) {
-                    		typetoStateMap.put(s,parts[i_2]);
-                    		i_2++;
+                    	for(int i=0;i<DoubleRoomFurniture_LIST.size();i++){
+                    		typetoStateMap.put(DoubleRoomFurniture_LIST.get(i),parts[i].trim());
                     	}
                     	break;  
                     }

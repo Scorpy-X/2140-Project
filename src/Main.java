@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
 
-public class Main { //Small Demonstration of database methods 
-	public static void main(String[] args) {
+public class Main{ //Small Demonstration of database methods 
+	public static void main(String[] args) { 
 		
 		ArrayList<Block> b_lst = DataManager.loadData();
 		
@@ -23,9 +23,6 @@ public class Main { //Small Demonstration of database methods
 				for(Furniture f: f_lst){
 					System.out.println("In room: "+r.getRoomID()+" f"+i+"'s State: "+f.getState());
 					i++;
-					if(i==7) {
-						f.setState("Good");
-					}
 				}
 								
 			}
