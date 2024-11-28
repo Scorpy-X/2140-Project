@@ -223,16 +223,16 @@ public class TaylorAdmin{
         return blocks;
     }
 
-    public TaylorAdmin(ArrayList<Block> storedBlocks) {
-        blocks.addAll(storedBlocks);
-    }
+//    / public TaylorAdmin(ArrayList<Block> storedBlocks) {
+//         blocks.addAll(storedBlocks);
+//     }
 
-
+/*
     @Override
     public String toString(){
-        String allBlocks = "Block"+ getAllBlocks();
+        String allBlocks = "Block: "+ getAllBlocks();
             return allBlocks;
-    }
+    }*/
 
 
     public void saveAllData(){
