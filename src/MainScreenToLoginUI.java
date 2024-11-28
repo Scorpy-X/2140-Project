@@ -7,14 +7,13 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 
 
-
-public class MainScreenToLogin extends JFrame {
+public class MainScreenToLoginUI extends JFrame {
 
     private JLabel imageLabel;
     private Image originalImage;
     
 
-    public MainScreenToLogin() {
+    public MainScreenToLoginUI() {
       
         setTitle("RIMS - Room Inventory Management System");
         setSize(800, 600);
@@ -57,7 +56,7 @@ public class MainScreenToLogin extends JFrame {
     
         addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                new LoginScreen();
+                new LoginScreenUI();
                 dispose();
             }
         });
