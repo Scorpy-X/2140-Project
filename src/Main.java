@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Main { //Small Demonstration of database methods 
 	public static void main(String[] args) {
-		DataManager.createDatabase();
+		
 		ArrayList<Block> b_lst = DataManager.loadData();
 		
 		for(Block b: b_lst){
@@ -18,11 +18,14 @@ public class Main { //Small Demonstration of database methods
 						if(o!=null)
 							System.out.println(o.getfName());
 					}
-				}
+				} 
 				
 				for(Furniture f: f_lst){
 					System.out.println("In room: "+r.getRoomID()+" f"+i+"'s State: "+f.getState());
 					i++;
+					if(i==7) {
+						f.setState("Good");
+					}
 				}
 								
 			}
