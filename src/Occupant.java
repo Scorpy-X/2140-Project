@@ -74,7 +74,10 @@ public class Occupant{
     public void setPhoneNumber(String phoneNumber) {                              
         this.phoneNumber = phoneNumber;
     }
-
+    
+    public void setEmail(int idNum) {
+        this.idNum = idNum;
+    }
 
     public void updateAllData(String fName, String lName, int idNum, String phoneNumber, String email){
 
