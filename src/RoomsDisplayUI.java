@@ -8,10 +8,12 @@ import java.util.ArrayList;
 public class RoomsDisplayUI extends JFrame implements ActionListener {
     private final JButton btHome;
     private DefaultTableModel tableModel;
+    private int accessLevel;
 
 
-    public RoomsDisplayUI(){
+    public RoomsDisplayUI(int accessLevel){
         setTitle("Room Display");
+        this.accessLevel = accessLevel;
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setLayout(new BorderLayout());
@@ -69,7 +71,8 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    public RoomsDisplayUI(Block block){
+    public RoomsDisplayUI(Block block, int accessLevel){
+        this.accessLevel = accessLevel;
         setTitle("Room Display - Block");
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -168,12 +171,10 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btHome) {
-            System.out.println("Home pressed");
+            new MainMenuUI(accessLevel);
         }
     }
 
     public static void main(String [] args) {
-        new TaylorAdmin();
-        new RoomsDisplayUI();
     }
 }
