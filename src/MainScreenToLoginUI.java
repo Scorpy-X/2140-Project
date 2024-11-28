@@ -21,7 +21,7 @@ public class MainScreenToLoginUI extends JFrame {
         setLocationRelativeTo(null);
 
         String imagePath = "rims.png";
-        ImageIcon imageIcon = new ImageIcon(new File("src/rims.png").getAbsolutePath());
+        ImageIcon imageIcon = new ImageIcon(new File("rims.png").getAbsolutePath());
         if (imageIcon.getImageLoadStatus() == MediaTracker.ERRORED) {
         	System.out.println("Image file not found: " + imagePath); 
         	} else {
