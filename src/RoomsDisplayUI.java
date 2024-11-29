@@ -29,10 +29,11 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         FOOTERPANEL.setPreferredSize(new Dimension(700, 40));
         add(FOOTERPANEL, BorderLayout.SOUTH);
 
-        JPanel disPanel = new JPanel();
-        disPanel.setVisible(true);
-        disPanel.setPreferredSize(new Dimension(800, 700));
-        add(disPanel, BorderLayout.CENTER);
+        JPanel DISPANEL = new JPanel();
+        DISPANEL.setPreferredSize(new Dimension(800, 700));
+        DISPANEL.setVisible(true);
+        add(DISPANEL, BorderLayout.CENTER);
+        getContentPane().add(DISPANEL, BorderLayout.CENTER);
 
         btHome = new JButton("Home");
         btHome.setFocusable(true);
@@ -54,17 +55,14 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         String[] columnNames = {"Room Number", "Room Type", "Occupant's Name", "Bed Frame", "Mattress", "Closet", "Walls", "Window", "Chair", "Coffee Table", "Study Table", "Chest of Drawers"};
         tableModel = new DefaultTableModel(columnNames, 0);
         JTable rTable = new JTable(tableModel);
-        disPanel.add(rTable);
+        DISPANEL.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
         add(scrollPane);
 
         loadRoomsTable(db.getAllRooms());
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        getContentPane().add(HEADERPANEL, BorderLayout.NORTH);
-        getContentPane().add(disPanel, BorderLayout.CENTER);
-        getContentPane().add(FOOTERPANEL, BorderLayout.SOUTH);
-
+        
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
