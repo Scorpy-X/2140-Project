@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "TaylorAdmin",
+            "request": "launch",
+            "mainClass": "TaylorAdmin",
+            "projectName": "2140-Project"
+        },
+        {
+            "type": "java",
             "name": "AddOccupantUI",
             "request": "launch",
             "mainClass": "AddOccupantUI",

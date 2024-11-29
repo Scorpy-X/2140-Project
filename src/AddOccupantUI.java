@@ -13,7 +13,7 @@ public class AddOccupantUI extends JFrame {
 	public void OccupantFormUI(TaylorAdmin th,int access_level) {
 		setTitle("Add Occupant Form");
 		setSize(400, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(7, 3, 10, 10)); 
 		JLabel room_idLabel = new JLabel("Room ID:");
@@ -56,7 +56,7 @@ public class AddOccupantUI extends JFrame {
 					JOptionPane.showMessageDialog(null, "Please enter a valid room number.");
 				}else if(r.isRoomFull()){
 					JOptionPane.showMessageDialog(null, "Room is already at maximum occupancy");
-				}else if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				}else if(!th.isValidIdNumber(idNum)) {
 					JOptionPane.showMessageDialog(null, "Another Occupant has this ID number");
 				}else {
 					r.addOccupant(new Occupant(fName,lName,idNum,phoneNumber,email));

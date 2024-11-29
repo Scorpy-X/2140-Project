@@ -9,10 +9,12 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     private final JButton btHome;
     private DefaultTableModel tableModel;
     private int accessLevel;
+    private TaylorAdmin database;
 
 
-    public RoomsDisplayUI(int accessLevel){
+    public RoomsDisplayUI(TaylorAdmin db, int accessLevel){
         setTitle("Room Display");
+        this.database = db;
         this.accessLevel = accessLevel;
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -50,14 +52,14 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
 
-        String[] columnNames = {"Room Number", "Room Type", "Occupant's First Name", "Occupant's Surname"};
-        tableModel = new DefaultTableModel(columnNames, 1);
+        String[] columnNames = {"Room Number", "Room Type", "Occupant's Name"};
+        tableModel = new DefaultTableModel(columnNames, 0);
         JTable rTable = new JTable(tableModel);
         disPanel.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
         add(scrollPane);
         ArrayList<Room> allRooms = new ArrayList<>();
-        for (Block b:TaylorAdmin.getBlocks()) {
+        for (Block b:database.getBlocks()) {
             allRooms.addAll(b.getRooms());
         }
         loadRoomsTable(allRooms);
@@ -171,11 +173,8 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btHome) {
-            new MainMenuUI(accessLevel);
+            new MainMenuUI(database, accessLevel);
             dispose();
         }
-    }
-
-    public static void main(String [] args) {
     }
 }

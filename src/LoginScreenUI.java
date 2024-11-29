@@ -8,9 +8,10 @@ public class LoginScreenUI extends JFrame implements ActionListener {
     private JTextField usernameField;
     private JPasswordField passwordField;
     private JLabel errorLabel;
+    private TaylorAdmin database;
     
-    public LoginScreenUI() {
-
+    public LoginScreenUI(TaylorAdmin db) {
+        this.database = db;
         setTitle("Login - Room Inventory Management System");
         setSize(800, 600);
         setResizable(false);
@@ -69,11 +70,11 @@ public class LoginScreenUI extends JFrame implements ActionListener {
                 	errorLabel.setText("Invalid username or password.");
                 } else if(validationResult == 1){
                 	dispose();
-                	new MainMenuUI(1);
+                	new MainMenuUI(database, 1);
                 	
                 } else if(validationResult == 2){
                 	dispose();
-                	new MainMenuUI(2);
+                	new MainMenuUI(database, 2);
                 }
             }
         });
@@ -95,10 +96,10 @@ public class LoginScreenUI extends JFrame implements ActionListener {
             }
             else if(validationResult == 1){
             	dispose();
-            	new MainMenuUI(1);	
+            	new MainMenuUI(database, 1);	
             } else if(validationResult == 2){
                 dispose();
-            	new MainMenuUI(2);
+            	new MainMenuUI(database, 2);
             };
         }
     }

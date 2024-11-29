@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class EditFurnitureUI extends JFrame {
-	public static final List<String> SingleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window");
-	public static final List<String> DoubleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattrass","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window","Easy Chair2","Bed2","Mattrass2","Closet2","Coffee Table2","Study Table2","Chest of Draws2","Wall2","Window2");
+	public static final List<String> SingleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattress","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window");
+	public static final List<String> DoubleRoomFurniture_LIST = List.of("Easy Chair","Bed","Mattress","Closet","Coffee Table","Study Table","Chest of Draws","Wall","Window","Easy Chair2","Bed2","Mattrass2","Closet2","Coffee Table2","Study Table2","Chest of Draws2","Wall2","Window2");
 	private final String[] options = {"Excellent", "Fair", "Poor","None"};
 	private JTextField room_idF;
 	private JComboBox easyChairF;
@@ -29,12 +29,11 @@ public class EditFurnitureUI extends JFrame {
     private JComboBox chestOfDrawers2F;
     private JComboBox wall2F;
     private JComboBox window2F;
-    
-    
-	public void getRoomIDUI(TaylorAdmin th,int a_lvl){
+
+	public void getRoomIDUI(TaylorAdmin th){
 		setTitle("Room Number of Furniture to be edited");
 		setSize(380, 200);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(3, 2, 10, 10));
 		JLabel room_idLabel = new JLabel("Room ID:");
@@ -55,7 +54,7 @@ public class EditFurnitureUI extends JFrame {
 					remove(room_idLabel);
 					remove(room_idF);
 					remove(submitButton);
-					FurnitureFormUI(r,th,a_lvl); 
+					FurnitureFormUI(r,th); 
 				}
 				
 				}catch(NumberFormatException nfe){
@@ -67,12 +66,11 @@ public class EditFurnitureUI extends JFrame {
 				 } });
 		setVisible(true); 
 	}
-	public void FurnitureFormUI(Room r, TaylorAdmin th,int a_lvl) {
+
+	public void FurnitureFormUI(Room r, TaylorAdmin th) {
 		setTitle("Edit Occupant Form");
-		Toolkit toolkit = Toolkit.getDefaultToolkit();
-		Dimension screenSize = toolkit.getScreenSize();
-		setSize(screenSize.width, screenSize.height);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setSize(400, 300);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
 		
@@ -217,7 +215,7 @@ public class EditFurnitureUI extends JFrame {
 					}
 					JOptionPane.showMessageDialog(null, "Furniture Edited Successfully");
 					dispose();
-                	new MainMenuUI(a_lvl);
+                	new MainMenuUI();
 				
 				}catch(Exception e2) {
 					JOptionPane.showMessageDialog(null, e2.getMessage());
@@ -228,7 +226,7 @@ public class EditFurnitureUI extends JFrame {
 	}
 
 	public static void main(String[] args) { 
-		new EditFurnitureUI().getRoomIDUI(new TaylorAdmin(),1); 
+		new EditFurnitureUI().getRoomIDUI(new TaylorAdmin()); 
 	}
 }
 		
