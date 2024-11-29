@@ -216,7 +216,7 @@ public class EditFurnitureUI extends JFrame {
 					}
 					JOptionPane.showMessageDialog(null, "Furniture Edited Successfully");
 					dispose();
-                	new MainMenuUI();
+                	//new MainMenuUI();
 				
 				}catch(Exception e2) {
 					JOptionPane.showMessageDialog(null, e2.getMessage());
