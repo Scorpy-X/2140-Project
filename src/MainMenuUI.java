@@ -125,7 +125,6 @@ public class MainMenuUI extends JFrame implements ActionListener {
 
         if (accessLevel == 1) {
             btEditFurniture.setEnabled(true);
-            btEditFurniture.setText(btEditFurniture.getText() + " (Restricted)");
             btAddOccupant.setEnabled(false);
             btAddOccupant.setText(btAddOccupant.getText() + " (Restricted)");
             btDeleteOccupant.setEnabled(false);
