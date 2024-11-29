@@ -47,7 +47,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)", "Room Number (Ascending)", "Room Number (Descending)",
                 "Condition (Ascending)", "Condition (Descending)"};
-        JComboBox cmbSortOptions = new JComboBox(sortOptions);
+        JComboBox<String> cmbSortOptions = new JComboBox<>(sortOptions);
         cmbSortOptions.setEditable(false);
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
@@ -67,7 +67,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         setVisible(true);
     }
 
-    private void addToTable(Room room) {
+    public void addToTable(Room room) {
         String[] rDetails = new String[12];
         if (room.getRoomType() == "Single") {
             if (room.getOccupantLst().isEmpty()) {
@@ -166,7 +166,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         }
     }
 
-    private void loadRoomsTable(ArrayList<Room> rooms) {
+    public void loadRoomsTable(ArrayList<Room> rooms) {
         for (Room r:rooms) {
             addToTable(r);
         }

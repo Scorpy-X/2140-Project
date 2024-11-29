@@ -60,6 +60,14 @@ public class TaylorAdmin{
         return rlst;
     }
 
+    public ArrayList<Occupant> getAllOccupants() {
+        ArrayList<Occupant> retList = new ArrayList<>();
+        for (Room r:getAllRooms()) {
+            retList.addAll(r.getOccupantLst());
+        }
+        return retList;
+    }
+
     public Occupant getOccupant(int idNum){
 
         for(Block b: blocks){

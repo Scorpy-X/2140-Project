@@ -164,7 +164,8 @@ public class MainMenuUI extends JFrame implements ActionListener {
             dispose();
         }
         else if (e.getSource() == btDisplayOccupants) {
-            System.out.println("Display occupant pressed");
+            new OccupantsDisplayUI(th, accessLevel);
+            dispose();
         }
         else if (e.getSource() == btAddOccupant) {
             new AddOccupantUI().OccupantFormUI(th, accessLevel);
