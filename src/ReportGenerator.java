@@ -5,11 +5,8 @@ public  class ReportGenerator{
     //private static TaylorAdmin TaylorHall;
     private static Block blocks;
     
-    
         public ReportGenerator(){}
             
-       
-
         public static int getExcellentFurniture(ArrayList<Block> blocklst){//Total number of excellent furn
            int count = 0;
             for(Block block: blocklst){
@@ -33,7 +30,6 @@ public  class ReportGenerator{
                  return count;
              }
      
-
         public static int getPoorFurniture(ArrayList<Block> blocklst){//Total number of poor furn
             int count = 0;
             for(Block block: blocklst){
@@ -139,16 +135,9 @@ public  class ReportGenerator{
         
         }
         
-
-
-        
-        
         //hello my version 
 
   
-     
-
-    
     public static void main(String[] args) {
         // Example login attempts
      
@@ -162,11 +151,4 @@ public  class ReportGenerator{
        // ReportGenerator1.blockCount();
        // ReportGenerator1.listAllBlocks();
         }
-
-
 }
-
-
-
-
-       
