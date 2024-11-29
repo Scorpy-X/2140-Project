@@ -1,6 +1,6 @@
 
 import java.util.Comparator;
-//descending
+///descending
 public class SortbyLastNameDsc implements Comparator<Occupant>{
    
     @Override
