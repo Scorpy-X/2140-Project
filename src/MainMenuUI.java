@@ -123,11 +123,30 @@ public class MainMenuUI extends JFrame implements ActionListener {
         btGenReport.setBorder(BorderFactory.createEtchedBorder(Color.white, Color.white));
         DISPANEL.add(btGenReport);
 
-        if (accessLevel == 0) {
-            System.out.println("Access Level 1");
+        if (accessLevel == 1) {
+            btEditFurniture.setEnabled(true);
+            btEditFurniture.setText(btEditFurniture.getText() + " (Restricted)");
+            btAddOccupant.setEnabled(false);
+            btAddOccupant.setText(btAddOccupant.getText() + " (Restricted)");
+            btDeleteOccupant.setEnabled(false);
+            btDeleteOccupant.setText(btDeleteOccupant.getText() + " (Restricted)");
+            btDisplayOccupants.setEnabled(false);
+            btDisplayOccupants.setText(btDisplayOccupants.getText() + " (Restricted)");
+            btDisplayRooms.setEnabled(false);
+            btDisplayRooms.setText(btDisplayRooms.getText() + " (Restricted)");
+            btEditOccupant.setEnabled(false);
+            btEditOccupant.setText(btEditOccupant.getText() + " (Restricted)");
+            btGenReport.setEnabled(false);
+            btGenReport.setText(btGenReport.getText() + " (Restricted)");
         }
-        else if (accessLevel == 1) {
-            System.out.println("Access Level 2");
+        else if (accessLevel == 2) {
+            btEditFurniture.setEnabled(true);
+            btAddOccupant.setEnabled(true);
+            btDeleteOccupant.setEnabled(true);
+            btDisplayOccupants.setEnabled(true);
+            btDisplayRooms.setEnabled(true);
+            btEditOccupant.setEnabled(true);
+            btGenReport.setEnabled(true);
         }
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -145,7 +164,8 @@ public class MainMenuUI extends JFrame implements ActionListener {
             dispose();
         }
         else if (e.getSource() == btDisplayOccupants) {
-            System.out.println("Display occupant pressed");
+            new OccupantsDisplayUI(th, accessLevel);
+            dispose();
         }
         else if (e.getSource() == btAddOccupant) {
             new AddOccupantUI().OccupantFormUI(th, accessLevel);

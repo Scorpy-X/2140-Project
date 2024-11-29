@@ -122,7 +122,7 @@ public class EditFurnitureUI extends JFrame {
 			closetF.setSelectedItem(r.getCloset().getState()); 
 			coffeeTableF.setSelectedItem(r.getCoffeeTable().getState()); 
 			studyTableF.setSelectedItem(r.getStudyTable().getState()); 
-			chestOfDrawersF.setSelectedItem(r.getChestOfDraws().getState()); 
+			chestOfDrawersF.setSelectedItem(r.getChestOfDrawers().getState()); 
 			wallF.setSelectedItem(r.getWall().getState()); 
 			windowF.setSelectedItem(r.getWindow().getState()); 
 		}else {
@@ -133,7 +133,7 @@ public class EditFurnitureUI extends JFrame {
 			closetF.setSelectedItem(r.getCloset().getState()); 
 			coffeeTableF.setSelectedItem(r.getCoffeeTable().getState()); 
 			studyTableF.setSelectedItem(r.getStudyTable().getState()); 
-			chestOfDrawersF.setSelectedItem(r.getChestOfDraws().getState()); 
+			chestOfDrawersF.setSelectedItem(r.getChestOfDrawers().getState()); 
 			wallF.setSelectedItem(r.getWall().getState()); 
 			windowF.setSelectedItem(r.getWindow().getState()); 
 
@@ -143,7 +143,7 @@ public class EditFurnitureUI extends JFrame {
 			closet2F.setSelectedItem(r.getCloset2().getState()); 
 			coffeeTable2F.setSelectedItem(r.getCoffeeTable2().getState()); 
 			studyTable2F.setSelectedItem(r.getStudyTable2().getState()); 
-			chestOfDrawers2F.setSelectedItem(r.getChestOfDraws2().getState()); 
+			chestOfDrawers2F.setSelectedItem(r.getChestOfDrawers2().getState()); 
 			wall2F.setSelectedItem(r.getWall2().getState()); 
 			window2F.setSelectedItem(r.getWindow2().getState());
 
@@ -198,7 +198,7 @@ public class EditFurnitureUI extends JFrame {
 					r.getCloset().setState((String) closetF.getSelectedItem());
 					r.getCoffeeTable().setState((String) coffeeTableF.getSelectedItem());
 					r.getStudyTable().setState((String) studyTableF.getSelectedItem());
-					r.getChestOfDraws().setState((String) chestOfDrawersF.getSelectedItem());
+					r.getChestOfDrawers().setState((String) chestOfDrawersF.getSelectedItem());
 					r.getWall().setState((String) wallF.getSelectedItem());
 					r.getWindow().setState((String) windowF.getSelectedItem());
 					
@@ -209,7 +209,7 @@ public class EditFurnitureUI extends JFrame {
 						r.getCloset2().setState((String) closet2F.getSelectedItem());
 						r.getCoffeeTable2().setState((String) coffeeTable2F.getSelectedItem());
 						r.getStudyTable2().setState((String) studyTable2F.getSelectedItem());
-						r.getChestOfDraws2().setState((String) chestOfDrawers2F.getSelectedItem());
+						r.getChestOfDrawers2().setState((String) chestOfDrawers2F.getSelectedItem());
 						r.getWall2().setState((String) wall2F.getSelectedItem());
 						r.getWindow2().setState((String) window2F.getSelectedItem());
 					}
