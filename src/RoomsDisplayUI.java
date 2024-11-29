@@ -173,7 +173,6 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btHome) {
-            new MainMenuUI(database, accessLevel);
             dispose();
         }
     }

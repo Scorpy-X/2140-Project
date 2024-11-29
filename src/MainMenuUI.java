@@ -136,6 +136,7 @@ public class MainMenuUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btLogout) {
+            th.saveAllData();
             new LoginScreenUI(th);
             dispose();
         }
@@ -153,7 +154,7 @@ public class MainMenuUI extends JFrame implements ActionListener {
             new EditOccupantUI().getOccupantIDUI(th); 
         }
         else if (e.getSource() == btDeleteOccupant) {
-            System.out.println("Delete occupants pressed");
+            new DeleteOccupantUI().getOccupantIDUI(th, 1);
         }
         else if (e.getSource() == btEditFurniture) {
             new EditFurnitureUI().getRoomIDUI(th);

@@ -26,7 +26,6 @@ public class DeleteOccupantUI extends JFrame {
 					o = null;
 					dispose();
 					JOptionPane.showMessageDialog(null, "The occupant was deleted.");
-					new MainMenuUI(th, a_lvl);
 				}else {
 					JOptionPane.showMessageDialog(null, "There is no occupant with this id.");
 				}
