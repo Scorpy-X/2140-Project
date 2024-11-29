@@ -18,7 +18,7 @@ public class Room{
     private Furniture closet;
     private Furniture coffeeTable;
     private Furniture studyTable;
-    private Furniture chestOfDraws;
+    private Furniture chestOfDrawers;
     private Furniture wall;
     private Furniture window;
 
@@ -28,7 +28,7 @@ public class Room{
     private Furniture closet2;
     private Furniture coffeeTable2;
     private Furniture studyTable2;
-    private Furniture chestOfDraws2;
+    private Furniture chestOfDrawers2;
     private Furniture wall2;
     private Furniture window2;
 
@@ -43,7 +43,7 @@ public class Room{
                 String closetState,
                 String coffeeTableState, 
                 String studyTableState, 
-                String chestOfDrawsState, 
+                String chestOfDrawersState, 
                 String wallState, 
                 String windowState){   
                 
@@ -71,7 +71,7 @@ public class Room{
         this.closet = new Furniture(closetState);
         this.coffeeTable = new Furniture(coffeeTableState);
         this.studyTable = new Furniture(studyTableState);
-        this.chestOfDraws = new Furniture(chestOfDrawsState);
+        this.chestOfDrawers = new Furniture(chestOfDrawersState);
         this.wall = new Furniture(wallState);
         this.window = new Furniture(windowState);
 
@@ -82,7 +82,7 @@ public class Room{
         this.furnitureLst.add(this.closet);
         this.furnitureLst.add(this.coffeeTable);
         this.furnitureLst.add(this.studyTable);
-        this.furnitureLst.add(this.chestOfDraws);
+        this.furnitureLst.add(this.chestOfDrawers);
         this.furnitureLst.add(this.wall);
         this.furnitureLst.add(this.window);
 
@@ -100,7 +100,7 @@ public class Room{
                 String closetState,
                 String coffeeTableState, 
                 String studyTableState, 
-                String chestOfDrawsState, 
+                String chestOfDrawersState, 
                 String wallState, 
                 String windowState,
 
@@ -110,7 +110,7 @@ public class Room{
                 String closetState2,
                 String coffeeTableState2, 
                 String studyTableState2, 
-                String chestOfDrawsState2, 
+                String chestOfDrawersState2, 
                 String wallState2, 
                 String windowState2){          
 
@@ -148,7 +148,7 @@ public class Room{
         this.closet = new Furniture(closetState);
         this.coffeeTable = new Furniture(coffeeTableState);
         this.studyTable = new Furniture(studyTableState);
-        this.chestOfDraws = new Furniture(chestOfDrawsState);
+        this.chestOfDrawers = new Furniture(chestOfDrawersState);
         this.wall = new Furniture(wallState);
         this.window = new Furniture(windowState);
 
@@ -159,7 +159,7 @@ public class Room{
         this.furnitureLst.add(this.closet);
         this.furnitureLst.add(this.coffeeTable);
         this.furnitureLst.add(this.studyTable);
-        this.furnitureLst.add(this.chestOfDraws);
+        this.furnitureLst.add(this.chestOfDrawers);
         this.furnitureLst.add(this.wall);
         this.furnitureLst.add(this.window);
 
@@ -170,7 +170,7 @@ public class Room{
         this.closet2 = new Furniture(closetState2);
         this.coffeeTable2 = new Furniture(coffeeTableState2);
         this.studyTable2 = new Furniture(studyTableState2);
-        this.chestOfDraws2 = new Furniture(chestOfDrawsState2);
+        this.chestOfDrawers2 = new Furniture(chestOfDrawersState2);
         this.wall2 = new Furniture(wallState2);
         this.window2 = new Furniture(windowState2);
 
@@ -181,7 +181,7 @@ public class Room{
         this.furnitureLst.add(this.closet2);
         this.furnitureLst.add(this.coffeeTable2);
         this.furnitureLst.add(this.studyTable2);
-        this.furnitureLst.add(this.chestOfDraws2);
+        this.furnitureLst.add(this.chestOfDrawers2);
         this.furnitureLst.add(this.wall2);
         this.furnitureLst.add(this.window2);
 
@@ -241,8 +241,8 @@ public class Room{
         return studyTable;
     }
 
-    public Furniture getChestOfDraws() {        //Use to update Chest of Draws #1
-        return chestOfDraws;
+    public Furniture getChestOfDrawers() {        //Use to update Chest of Draws #1
+        return chestOfDrawers;
     }
 
     public Furniture getWall() {                //Use to update Wall #1
@@ -278,8 +278,8 @@ public class Room{
         return studyTable2;
     }
 
-    public Furniture getChestOfDraws2() {       //Use to update Chest of Draws #2
-        return chestOfDraws2;
+    public Furniture getChestOfDrawers2() {       //Use to update Chest of Draws #2
+        return chestOfDrawers2;
     }
 
     public Furniture getWall2() {               //Use to update Wall #2

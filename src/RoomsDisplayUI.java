@@ -51,17 +51,14 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
 
-        String[] columnNames = {"Room Number", "Room Type", "Occupant's Name"};
+        String[] columnNames = {"Room Number", "Room Type", "Occupant's Name", "Bed Frame", "Mattress", "Closet", "Walls", "Window", "Chair", "Coffee Table", "Study Table", "Chest of Drawers"};
         tableModel = new DefaultTableModel(columnNames, 0);
         JTable rTable = new JTable(tableModel);
         disPanel.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
         add(scrollPane);
-        ArrayList<Room> allRooms = new ArrayList<>();
-        for (Block b:database.getBlocks()) {
-            allRooms.addAll(b.getRooms());
-        }
-        loadRoomsTable(allRooms);
+
+        loadRoomsTable(db.getAllRooms());
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         getContentPane().add(HEADERPANEL, BorderLayout.NORTH);
@@ -73,34 +70,100 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     }
 
     private void addToTable(Room room) {
-        if (room.getOccupantLst().isEmpty()) {
-            String roomNum = room.getRoomID();
-            String blockNm = String.valueOf(room.getBlock());
-            String roomType = room.getRoomType();
-
-            String[] rDetails = new String[5];
-            rDetails[0] = roomNum;
-            rDetails[1] = blockNm;
-            rDetails[2] = roomType;
-            rDetails[3] = "";
-            rDetails[4] = "";
-        }
-        else {
-            for (Occupant o:room.getOccupantLst()) {
-                String occupantFName = o.getfName();
-                String occupantLName = o.getlName();
-                String roomNum = room.getRoomID();
-                String blockNm = String.valueOf(room.getBlock());
-                String roomType = room.getRoomType();
-
-                String[] rDetails = new String[5];
-                rDetails[0] = roomNum;
-                rDetails[1] = blockNm;
-                rDetails[2] = roomType;
-                rDetails[3] = occupantFName;
-                rDetails[4] = occupantLName;
-
+        String[] rDetails = new String[12];
+        if (room.getRoomType() == "Single") {
+            if (room.getOccupantLst().isEmpty()) {
+                rDetails[0] = room.getRoomID();
+                rDetails[1] = room.getRoomType();
+                rDetails[2] = "";
+                rDetails[3] = room.getBed().getState();
+                rDetails[4] = room.getMattress().getState();
+                rDetails[5] = room.getCloset().getState();
+                rDetails[6] = room.getWall().getState();
+                rDetails[7] = room.getWindow().getState();
+                rDetails[8] = room.getEasyChair().getState();
+                rDetails[9] = room.getCoffeeTable().getState();
+                rDetails[10] = room.getStudyTable().getState();
+                rDetails[11] = room.getChestOfDrawers().getState();
                 tableModel.addRow(rDetails);
+            }
+            else {
+                Occupant o = room.getOccupantLst().get(0);
+                rDetails[0] = room.getRoomID();
+                rDetails[1] = room.getRoomType();
+                rDetails[2] = o.getFullName();
+                rDetails[3] = room.getBed().getState();
+                rDetails[4] = room.getMattress().getState();
+                rDetails[5] = room.getCloset().getState();
+                rDetails[6] = room.getWall().getState();
+                rDetails[7] = room.getWindow().getState();
+                rDetails[8] = room.getEasyChair().getState();
+                rDetails[9] = room.getCoffeeTable().getState();
+                rDetails[10] = room.getStudyTable().getState();
+                rDetails[11] = room.getChestOfDrawers().getState();
+                tableModel.addRow(rDetails);
+            }
+        }
+        else if (room.getRoomType() == "Double") {
+            String[] r2Details = new String[12];
+            if (room.getOccupantLst().isEmpty()) {
+                rDetails[0] = room.getRoomID();
+                rDetails[1] = room.getRoomType();
+                rDetails[2] = "";
+                rDetails[3] = room.getBed().getState();
+                rDetails[4] = room.getMattress().getState();
+                rDetails[5] = room.getCloset().getState();
+                rDetails[6] = room.getWall().getState();
+                rDetails[7] = room.getWindow().getState();
+                rDetails[8] = room.getEasyChair().getState();
+                rDetails[9] = room.getCoffeeTable().getState();
+                rDetails[10] = room.getStudyTable().getState();
+                rDetails[11] = room.getChestOfDrawers().getState();
+                tableModel.addRow(rDetails);
+
+                r2Details[0] = room.getRoomID();
+                r2Details[1] = room.getRoomType();
+                r2Details[2] = "";
+                r2Details[3] = room.getBed2().getState();
+                r2Details[4] = room.getMattress2().getState();
+                r2Details[5] = room.getCloset2().getState();
+                r2Details[6] = room.getWall2().getState();
+                r2Details[7] = room.getWindow2().getState();
+                r2Details[8] = room.getEasyChair2().getState();
+                r2Details[9] = room.getCoffeeTable2().getState();
+                r2Details[10] = room.getStudyTable2().getState();
+                r2Details[11] = room.getChestOfDrawers2().getState();
+                tableModel.addRow(r2Details);
+            }
+            else {
+                Occupant o = room.getOccupantLst().get(0);
+                rDetails[0] = room.getRoomID();
+                rDetails[1] = room.getRoomType();
+                rDetails[2] = o.getFullName();
+                rDetails[3] = room.getBed().getState();
+                rDetails[4] = room.getMattress().getState();
+                rDetails[5] = room.getCloset().getState();
+                rDetails[6] = room.getWall().getState();
+                rDetails[7] = room.getWindow().getState();
+                rDetails[8] = room.getEasyChair().getState();
+                rDetails[9] = room.getCoffeeTable().getState();
+                rDetails[10] = room.getStudyTable().getState();
+                rDetails[11] = room.getChestOfDrawers().getState();
+                tableModel.addRow(rDetails);
+
+                r2Details[0] = room.getRoomID();
+                r2Details[1] = room.getRoomType();
+                r2Details[2] = o.getFullName();
+                r2Details[3] = room.getBed2().getState();
+                r2Details[4] = room.getMattress2().getState();
+                r2Details[5] = room.getCloset2().getState();
+                r2Details[6] = room.getWall2().getState();
+                r2Details[7] = room.getWindow2().getState();
+                r2Details[8] = room.getEasyChair2().getState();
+                r2Details[9] = room.getCoffeeTable2().getState();
+                r2Details[10] = room.getStudyTable2().getState();
+                r2Details[11] = room.getChestOfDrawers2().getState();
+                tableModel.addRow(r2Details);
             }
         }
     }
@@ -114,6 +177,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btHome) {
+            new MainMenuUI(database, accessLevel);
             dispose();
         }
     }
