@@ -5,8 +5,9 @@ public class Room{
     private String roomID;                  //alphanumeric room num with block letter
     private char block;                     //Single letter representing block letter 
     private String roomType;                //Single or Double 
+    public int roomScore;
     
-    private ArrayList<Furniture> furnitureLst;
+    private static ArrayList<Furniture> furnitureLst;
     private ArrayList<Occupant> occupantLst;
     private Occupant occupant1;
     private Occupant occupant2;
@@ -207,7 +208,7 @@ public class Room{
         return roomType;
     }
 
-    public ArrayList<Furniture> getFurnitureLst() {
+    public static ArrayList<Furniture> getFurnitureLst() {
         return furnitureLst;
     }
 
@@ -299,6 +300,27 @@ public class Room{
     public int getFurnitureCount(){
 
         return furnitureLst.size();
+    }
+
+    public int getRoomScore() {
+        int score = 0;
+        
+        for (Furniture f:getFurnitureLst()) {
+            if (f.getState() == "Excellent") {
+                score += 20;
+            }
+            else if (f.getState() == "Fair") {
+                score += 10;
+            }
+            else if (f.getState() == "Poor") {
+                score += 5;
+            }
+            else if (f.getState() == "None") {
+                score += 0;
+            }
+        }
+        int retval = score;
+        return retval;
     }
 
 
