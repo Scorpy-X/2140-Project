@@ -13,7 +13,7 @@ public class AddOccupantUI extends JFrame {
 	public void OccupantFormUI(TaylorAdmin th) {
 		setTitle("Add Occupant Form");
 		setSize(400, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(7, 3, 10, 10)); 
 		JLabel room_idLabel = new JLabel("Room ID:");
