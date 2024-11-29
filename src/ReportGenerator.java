@@ -14,7 +14,7 @@ public  class ReportGenerator{
            int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
-                   count = rooms.getExcellentFurnitureCount();
+                   count += rooms.getExcellentFurnitureCount();
                    
                 }
             }
@@ -26,7 +26,7 @@ public  class ReportGenerator{
                 int count = 0;
                  for(Block block: blocklst){
                      for(Room rooms: block.getRooms()){
-                        count = rooms.getFairFurnitureCount();
+                        count += rooms.getFairFurnitureCount();
                          
                      }
                  }
@@ -38,7 +38,7 @@ public  class ReportGenerator{
             int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
-                   count = rooms.getPoorFurnitureCount();
+                   count += rooms.getPoorFurnitureCount();
                    
                 }
             }
@@ -49,7 +49,7 @@ public  class ReportGenerator{
             int count = 0;
             for(Block block: blocklst){
                 for(Room rooms: block.getRooms()){
-                   count = rooms.getMissingFurnitureCount();
+                   count += rooms.getMissingFurnitureCount();
                     
                 }
             }
@@ -63,7 +63,7 @@ public  class ReportGenerator{
 
             for(Room rooms: blocks.getRooms()){
                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                    count = rooms.getExcellentFurnitureCount();
+                    count += rooms.getExcellentFurnitureCount();
                 }
 
                  }
@@ -77,7 +77,7 @@ public  class ReportGenerator{
  
              for(Room rooms: blocks.getRooms()){
                  if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                     count = rooms.getFairFurnitureCount();
+                     count += rooms.getFairFurnitureCount();
                  }
  
                   }
@@ -91,7 +91,7 @@ public  class ReportGenerator{
  
              for(Room rooms: blocks.getRooms()){
                  if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                     count = rooms.getPoorFurnitureCount();
+                     count += rooms.getPoorFurnitureCount();
                  }
  
                   }
@@ -105,7 +105,7 @@ public  class ReportGenerator{
  
              for(Room rooms: blocks.getRooms()){
                  if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                     count = rooms.getMissingFurnitureCount();
+                     count += rooms.getMissingFurnitureCount();
                  }
  
                   }
@@ -117,7 +117,7 @@ public  class ReportGenerator{
             int count = 0;
                  for(Block block: blocklst){
                      for(Room rooms: block.getRooms()){
-                        count = rooms.getNumOccupants();
+                        count += rooms.getNumOccupants();
                          
                      }
                  }
@@ -130,7 +130,7 @@ public  class ReportGenerator{
  
              for(Room rooms: blocks.getRooms()){
                  if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                     count = rooms.getNumOccupants();
+                     count += rooms.getNumOccupants();
                  }
  
                   }
@@ -155,7 +155,9 @@ public  class ReportGenerator{
       ///////////////////////////////////////////// TaylorAdmin TaylorHall = new TaylorAdmin(DataManager.loadData());
         TaylorAdmin TaylorHall = new TaylorAdmin();
        // ReportGenerator  ReG1 = new ReportGenerator();
-        ReportGenerator.getExcellentFurniture(TaylorHall.getBlocks());
+       TaylorHall.getBlock('A');
+       TaylorHall.getnumBlocks();
+      
 
        // ReportGenerator1.blockCount();
        // ReportGenerator1.listAllBlocks();
