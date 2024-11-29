@@ -10,7 +10,7 @@ public class AddOccupantUI extends JFrame {
 	private JTextField idNumF;
 	private JTextField phoneNumberF;
 	private JTextField emailF;
-	public void OccupantFormUI(TaylorAdmin th) {
+	public void OccupantFormUI(TaylorAdmin th,int access_level) {
 		setTitle("Add Occupant Form");
 		setSize(400, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -62,7 +62,7 @@ public class AddOccupantUI extends JFrame {
 					r.addOccupant(new Occupant(fName,lName,idNum,phoneNumber,email));
 					JOptionPane.showMessageDialog(null, "Occupant Added Successfully");
 					dispose();
-                	//new MainMenuUI();
+                	new MainMenuUI(access_level);
 				}
 				
 				}catch(NumberFormatException nfe){
@@ -75,7 +75,7 @@ public class AddOccupantUI extends JFrame {
 		setVisible(true); 
 	} 
 	public static void main(String[] args) { 
-		new AddOccupantUI().OccupantFormUI(new TaylorAdmin()); 
+		new AddOccupantUI().OccupantFormUI(new TaylorAdmin(),1); 
 	}
 		
 	

@@ -9,7 +9,7 @@ public class EditOccupantUI extends JFrame {
 	private JTextField idNumF;
 	private JTextField phoneNumberF;
 	private JTextField emailF;
-	public void getOccupantIDUI(TaylorAdmin th){
+	public void getOccupantIDUI(TaylorAdmin th,int a_lvl){
 		setTitle("ID Number of Student to be edited");
 		setSize(380, 200);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -30,7 +30,7 @@ public class EditOccupantUI extends JFrame {
 					remove(idNumLabel);
 					remove(idNumF);
 					remove(submitButton);
-					OccupantFormUI(th.getOccupant(idNum),th); 
+					OccupantFormUI(th.getOccupant(idNum),th,a_lvl); 
 				}else {
 					JOptionPane.showMessageDialog(null, "There is no occupant with this id.");
 				}
@@ -44,7 +44,7 @@ public class EditOccupantUI extends JFrame {
 				 } });
 		setVisible(true); 
 	}
-	public void OccupantFormUI(Occupant o, TaylorAdmin th) {
+	public void OccupantFormUI(Occupant o, TaylorAdmin th,int a_lvl) {
 		setTitle("Edit Occupant Form");
 		setSize(400, 300);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -96,7 +96,7 @@ public class EditOccupantUI extends JFrame {
 					o.setEmail(email);
 					JOptionPane.showMessageDialog(null, "Occupant Edited Successfully");
 					dispose();
-                	new MainMenuUI();
+                	new MainMenuUI(a_lvl);
 				}
 				
 				}catch(NumberFormatException nfe){
@@ -109,7 +109,7 @@ public class EditOccupantUI extends JFrame {
 		setVisible(true); 
 	} 
 	public static void main(String[] args) { 
-		new EditOccupantUI().getOccupantIDUI(new TaylorAdmin()); 
+		new EditOccupantUI().getOccupantIDUI(new TaylorAdmin(),1); 
 	}
 		
 	
