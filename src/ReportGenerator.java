@@ -124,15 +124,14 @@ public  class ReportGenerator{
             int count = 0;
             for(Block blocks: blocklst){
  
-             for(Room rooms: blocks.getRooms()){
-                 if(rooms.getRoomID().startsWith(Character.toString((block)))){
-                     count += rooms.getNumOccupants();
-                 }
+                for(Room rooms: blocks.getRooms()){
+                    if(rooms.getRoomID().startsWith(Character.toString((block)))){
+                        count += rooms.getNumOccupants();
+                    }
  
-                  }
+                }
             }
-                      return count;
-        
+            return count;
         }
         
         //hello my version 

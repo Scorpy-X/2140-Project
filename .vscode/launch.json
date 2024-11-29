@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ReportGenerator",
+            "request": "launch",
+            "mainClass": "ReportGenerator",
+            "projectName": "2140-Project"
+        },
+        {
+            "type": "java",
             "name": "TaylorAdmin",
             "request": "launch",
             "mainClass": "TaylorAdmin",
