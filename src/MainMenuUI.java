@@ -180,7 +180,7 @@ public class MainMenuUI extends JFrame implements ActionListener {
             new EditFurnitureUI().getRoomIDUI(th);
         }
         else if (e.getSource() == btGenReport) {
-            new ReportUI(th);
+            //new ReportUI(th);
         }
     }
 }

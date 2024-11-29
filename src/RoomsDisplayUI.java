@@ -134,10 +134,9 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
                 r2Details[10] = room.getStudyTable2().getState();
                 r2Details[11] = room.getChestOfDrawers2().getState();
                 tableModel.addRow(r2Details);
-            }
-            else {
-                Occupant o = room.getOccupantLst().get(0);
-                rDetails[0] = room.getRoomID();
+            }else if(room.getNumOccupants()==1) {
+            	Occupant o = room.getOccupantLst().get(0);
+            	rDetails[0] = room.getRoomID();
                 rDetails[1] = room.getRoomType();
                 rDetails[2] = o.getFullName();
                 rDetails[3] = room.getBed().getState();
@@ -153,7 +152,37 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
 
                 r2Details[0] = room.getRoomID();
                 r2Details[1] = room.getRoomType();
-                r2Details[2] = o.getFullName();
+                r2Details[2] = "";
+                r2Details[3] = room.getBed2().getState();
+                r2Details[4] = room.getMattress2().getState();
+                r2Details[5] = room.getCloset2().getState();
+                r2Details[6] = room.getWall2().getState();
+                r2Details[7] = room.getWindow2().getState();
+                r2Details[8] = room.getEasyChair2().getState();
+                r2Details[9] = room.getCoffeeTable2().getState();
+                r2Details[10] = room.getStudyTable2().getState();
+                r2Details[11] = room.getChestOfDrawers2().getState();
+                tableModel.addRow(r2Details);
+            }else {
+            	Occupant o1 = room.getOccupantLst().get(0);
+            	Occupant o2 = room.getOccupantLst().get(1);
+            	rDetails[0] = room.getRoomID();
+                rDetails[1] = room.getRoomType();
+                rDetails[2] = o1.getFullName();
+                rDetails[3] = room.getBed().getState();
+                rDetails[4] = room.getMattress().getState();
+                rDetails[5] = room.getCloset().getState();
+                rDetails[6] = room.getWall().getState();
+                rDetails[7] = room.getWindow().getState();
+                rDetails[8] = room.getEasyChair().getState();
+                rDetails[9] = room.getCoffeeTable().getState();
+                rDetails[10] = room.getStudyTable().getState();
+                rDetails[11] = room.getChestOfDrawers().getState();
+                tableModel.addRow(rDetails);
+
+                r2Details[0] = room.getRoomID();
+                r2Details[1] = room.getRoomType();
+                r2Details[2] = o2.getFullName();
                 r2Details[3] = room.getBed2().getState();
                 r2Details[4] = room.getMattress2().getState();
                 r2Details[5] = room.getCloset2().getState();
