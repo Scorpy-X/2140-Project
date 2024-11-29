@@ -23,7 +23,8 @@ public class DeleteOccupantUI extends JFrame {
 				int idNum = Integer.parseInt(idNumF.getText());
 				if(!th.isValidIdNumber(idNum)) {
 					Occupant o = th.getOccupant(idNum);
-					o = null;
+					Room r = th.getRoomwithOccupantID(idNum);
+					r.removeOccupant(o);
 					dispose();
 					JOptionPane.showMessageDialog(null, "The occupant was deleted.");
 				}else {
