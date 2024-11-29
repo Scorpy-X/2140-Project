@@ -182,31 +182,42 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         }
         else if (e.getSource() == cmbSortOptions) {
             if (cmbSortOptions.getSelectedIndex() == 1) {
-                Collections.sort(database.getAllRooms(), new RSortByName());
+                System.out.println("ascending sort by surname");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new RSortByName());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 2) {
-                // Collections.sort(database.getAllRooms());
+                System.out.println("descending sort by surname");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 3) {
+                System.out.println("ascending sort by room number");
                 // Collections.sort(database.getAllRooms(), new SortbyLastNameAsc());
                 tableModel.setRowCount(0);
                 loadRoomsTable(database.getAllRooms());
             }
             else if (cmbSortOptions.getSelectedIndex() == 4) {
+                System.out.println("descending sort by room number");
                 // Collections.sort(database.getAllRooms(), new SortbyLastNameDsc());
                 tableModel.setRowCount(0);
                 loadRoomsTable(database.getAllRooms());
             }
             else if (cmbSortOptions.getSelectedIndex() == 5) {
+                System.out.println("ascending sort by condition");
                 Collections.sort(database.getAllRooms(), new SortbyRoomNumAsc());
                 tableModel.setRowCount(0);
                 loadRoomsTable(database.getAllRooms());
             }
             else if (cmbSortOptions.getSelectedIndex() == 6) {
+                System.out.println("descending sort by condition");
                 Collections.sort(database.getAllRooms(), new SortbyRoomNumDsc());
                 tableModel.setRowCount(0);
                 loadRoomsTable(database.getAllRooms());
