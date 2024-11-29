@@ -113,7 +113,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
 
-        String[] columnNames = {"Room Number", "Block", "Room Type", "Occupant's First Name", "Occupant's Surname"};
+        String[] columnNames = {"Room Number", "Room Type", "Occupant's First Name", "Occupant's Surname"};
         tableModel = new DefaultTableModel(columnNames, 0);
         JTable rTable = new JTable(tableModel);
         disPanel.add(rTable);

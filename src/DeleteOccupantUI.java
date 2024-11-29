@@ -26,12 +26,12 @@ public class DeleteOccupantUI extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				try {
 				int idNum = Integer.parseInt(idNumF.getText());
-				if(!TaylorAdmin.isValidIdNumber(idNum)) {
+				if(!th.isValidIdNumber(idNum)) {
 					Occupant o = th.getOccupant(idNum);
 					o = null;
 					dispose();
 					JOptionPane.showMessageDialog(null, "The occupant was deleted.");
-					new MainMenuUI(a_lvl); 
+					new MainMenuUI(th, a_lvl);
 				}else {
 					JOptionPane.showMessageDialog(null, "There is no occupant with this id.");
 				}

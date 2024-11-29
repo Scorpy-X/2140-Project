@@ -62,7 +62,7 @@ public class AddOccupantUI extends JFrame {
 					r.addOccupant(new Occupant(fName,lName,idNum,phoneNumber,email));
 					JOptionPane.showMessageDialog(null, "Occupant Added Successfully");
 					dispose();
-                	new MainMenuUI(access_level);
+                	new MainMenuUI(th, access_level);
 				}
 				
 				}catch(NumberFormatException nfe){
