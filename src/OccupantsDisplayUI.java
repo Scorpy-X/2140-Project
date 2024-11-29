@@ -2,12 +2,15 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class OccupantsDisplayUI extends JFrame implements ActionListener{
     private TaylorAdmin database;
     private final JButton btHome;
+    JComboBox<String> cmbSortOptions;
     private DefaultTableModel tableModel;
     private int accessLevel;
 
@@ -46,7 +49,7 @@ public class OccupantsDisplayUI extends JFrame implements ActionListener{
  
         String[] sortOptions = {" ", "First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)"};
-        JComboBox<String> cmbSortOptions = new JComboBox<>(sortOptions);
+        cmbSortOptions = new JComboBox<>(sortOptions);
         cmbSortOptions.setEditable(false);
         cmbSortOptions.addActionListener(this);
         HEADERPANEL.add(cmbSortOptions);
@@ -84,6 +87,26 @@ public class OccupantsDisplayUI extends JFrame implements ActionListener{
         if (e.getSource() == btHome) {
             new MainMenuUI(database, accessLevel);
             dispose();
+        }
+        else if (cmbSortOptions.getSelectedIndex() == 1) {
+            Collections.sort(database.getAllOccupants(), new SortbyFirstNameAsc());
+            tableModel.setRowCount(0);
+            loadOccupantsTable(database.getAllOccupants());
+        }
+        else if (cmbSortOptions.getSelectedIndex() == 2) {
+            Collections.sort(database.getAllOccupants(), new SortbyFirstNameDsc());
+            tableModel.setRowCount(0);
+            loadOccupantsTable(database.getAllOccupants());
+        }
+        else if (cmbSortOptions.getSelectedIndex() == 3) {
+            Collections.sort(database.getAllOccupants(), new SortbyLastNameAsc());
+            tableModel.setRowCount(0);
+            loadOccupantsTable(database.getAllOccupants());
+        }
+        else if (cmbSortOptions.getSelectedIndex() == 4) {
+            Collections.sort(database.getAllOccupants(), new SortbyLastNameDsc());
+            tableModel.setRowCount(0);
+            loadOccupantsTable(database.getAllOccupants());
         }
     }
 }

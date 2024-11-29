@@ -1,11 +1,15 @@
 import java.util.Comparator;
 //Ascending
-public class SortbyLastNameAsc implements Comparator<Occupant>{
+public class SortbyLastNameAsc extends Occupant implements Comparator<Occupant>{
    
     @Override
-    public int compare(Occupant p1, Occupant p2){
+    public int compare(Occupant o1, Occupant o2){
     	 
-            return p1.getlName().compareTo(p2.getlName());
+            return o1.getlName().compareTo(o2.getlName());
     }   
+
+    public int compareTo(Occupant o) {
+        return o.getlName().compareTo(this.getlName());
+    }
 }
 
