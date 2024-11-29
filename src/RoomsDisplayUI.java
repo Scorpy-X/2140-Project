@@ -57,7 +57,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         JTable rTable = new JTable(tableModel);
         disPanel.add(rTable);
         JScrollPane scrollPane = new JScrollPane(rTable);
-        getContentPane().add(scrollPane);
+        add(scrollPane);
         ArrayList<Room> allRooms = new ArrayList<>();
         for (Block b:database.getBlocks()) {
             allRooms.addAll(b.getRooms());

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class MainMenuUI extends JFrame implements ActionListener {
     private JButton btLogout, btDisplayRooms, btDisplayOccupants, btAddOccupant, btEditOccupant, btDeleteOccupant, btEditFurniture, btGenReport;
     private int accessLevel;
-    private TaylorAdmin database;
+    private TaylorAdmin th;
 
     //Default constructor
     public MainMenuUI() {
@@ -14,7 +14,7 @@ public class MainMenuUI extends JFrame implements ActionListener {
 
     public MainMenuUI(TaylorAdmin db, int accessLevel) {
         this.accessLevel = accessLevel;
-        this.database = db;
+        this.th = db;
         setTitle("RIMS - Main Menu");
         setBackground(Color.black);
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
@@ -136,27 +136,27 @@ public class MainMenuUI extends JFrame implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btLogout) {
-            new LoginScreenUI(database);
+            new LoginScreenUI(th);
             dispose();
         }
         else if (e.getSource() == btDisplayRooms) {
-            new RoomsDisplayUI(database, accessLevel);
+            new RoomsDisplayUI(th, accessLevel);
             dispose();
         }
         else if (e.getSource() == btDisplayOccupants) {
             System.out.println("Display occupant pressed");
         }
         else if (e.getSource() == btAddOccupant) {
-            new AddOccupantUI();
+            new AddOccupantUI().OccupantFormUI(th);
         }
         else if (e.getSource() == btEditOccupant) {
-            System.out.println("Edit occupants pressed");
+            new EditOccupantUI().getOccupantIDUI(th); 
         }
         else if (e.getSource() == btDeleteOccupant) {
             System.out.println("Delete occupants pressed");
         }
         else if (e.getSource() == btEditFurniture) {
-            System.out.println("Edit furniture pressed");
+            new EditFurnitureUI().getRoomIDUI(th);
         }
         else if (e.getSource() == btGenReport) {
             System.out.println("Generate report pressed");

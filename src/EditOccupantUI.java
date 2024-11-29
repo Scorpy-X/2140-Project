@@ -12,7 +12,7 @@ public class EditOccupantUI extends JFrame {
 	public void getOccupantIDUI(TaylorAdmin th){
 		setTitle("ID Number of Student to be edited");
 		setSize(380, 200);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(3, 2, 10, 10));
 		JLabel idNumLabel = new JLabel("Student ID:");
@@ -44,10 +44,11 @@ public class EditOccupantUI extends JFrame {
 				 } });
 		setVisible(true); 
 	}
+
 	public void OccupantFormUI(Occupant o, TaylorAdmin th) {
 		setTitle("Edit Occupant Form");
 		setSize(400, 300);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(7, 2, 10, 10)); 
 		
