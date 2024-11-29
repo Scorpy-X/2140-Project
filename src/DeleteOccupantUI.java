@@ -4,12 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class DeleteOccupantUI extends JFrame {
-	private JTextField room_idF;
-	private JTextField fNameF;
-	private JTextField lNameF;
 	private JTextField idNumF;
-	private JTextField phoneNumberF;
-	private JTextField emailF;
 	public void getOccupantIDUI(TaylorAdmin th, int a_lvl){
 		setTitle("ID Number of Student to be deleted");
 		setSize(380, 200);
