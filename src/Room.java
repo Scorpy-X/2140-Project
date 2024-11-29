@@ -336,8 +336,8 @@ public class Room{
     //Checks 
 
     public boolean isRoomFull(){                        //Returns true if room is full and false otherwise
-        if (roomType=="Single"){
-            return occupantLst.size()==1;
+        if (roomType.equals("Single")){
+        	return occupantLst.size()==1;
         }
         else{
             return occupantLst.size()==2;
@@ -399,7 +399,7 @@ public class Room{
         int count= 0;
 
         for(Furniture f: furnitureLst){
-            if(f.getState()=="Excellent"){
+            if(f.getState().equals("Excellent")){
                 count =count+1;
             }
         }
@@ -413,7 +413,7 @@ public class Room{
         int count= 0;
 
         for(Furniture f: furnitureLst){
-            if(f.getState()=="Fair"){
+            if(f.getState().equals("Fair")){
                 count =count+1;
             }
         }
@@ -425,7 +425,7 @@ public class Room{
         int count= 0;
 
         for(Furniture f: furnitureLst){
-            if(f.getState()=="Poor"){
+            if(f.getState().equals("Poor")){
                 count =count+1;
             }
         }
@@ -438,7 +438,7 @@ public class Room{
         int count= 0;
 
         for(Furniture f: furnitureLst){
-            if(f.getState()=="None"){
+            if(f.getState().equals("None")){
                 count =count+1;
             }
         }

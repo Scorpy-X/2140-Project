@@ -29,11 +29,11 @@ public class DataManager {
                 try (BufferedWriter writer = new BufferedWriter(new FileWriter(roomsFile))) {
                 	for(char c:Single_room_blocks){
                 		for(int i=1;i<41;i++)
-                			writer.write(""+c+i+","+c+",Single\n");;
+                			writer.write(""+c+i+","+c+",Single\n");
                 	}
                 	for(char c:Double_room_blocks){
                 		for(int i=1;i<21;i++)
-                			writer.write(""+c+i+","+c+",Double\n");;
+                			writer.write(""+c+i+","+c+",Double\n");
                 	}
                     System.out.println("rooms.txt initialized with default data.");
                 }
@@ -83,7 +83,9 @@ public class DataManager {
         		room_id = ""+c+i;
 				o_lst = getOccupantsByRoomId(room_id);
 				furnituremap = getTypeStateMap(room_id);
-				getTypeStateMap(room_id); r_lst.add(new Room(room_id, c,
+				
+				getTypeStateMap(room_id);
+				r_lst.add(new Room(room_id, c,
 						o_lst.size() > 0 ? o_lst.get(0) : null,
 						furnituremap.getOrDefault("Easy Chair", "Fair"),
 						furnituremap.getOrDefault("Bed", "Fair"),
@@ -94,6 +96,7 @@ public class DataManager {
 						furnituremap.getOrDefault("Chest of Draws", "Fair"),
 						furnituremap.getOrDefault("Wall", "Fair"),
 						furnituremap.getOrDefault("Window", "Fair")));
+				
 			}
         	b_lst.add(new Block(c,r_lst));
         }
@@ -142,7 +145,7 @@ public class DataManager {
                     roomWriter.write(r.getRoomID() + "," + r.getBlock() + "," + r.getRoomType()); // Save room details
                     roomWriter.newLine();
 
-                    if (r.getOccupantLst() != null) {
+                    if (r.getOccupantLst() != null && !r.getOccupantLst().isEmpty()) {
                         for (Occupant o : r.getOccupantLst()) {  //Save Occupant details
                             occupantWriter.write(o.getIdNum() + "," + o.getfName() + "," + o.getlName() + ","
                                     + o.getPhoneNumber() + "," + o.getEmail() + "," + r.getRoomID());
@@ -232,7 +235,7 @@ public class DataManager {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Error reading occupants file: " + e.getMessage());
+            System.out.println("Error reading furniture file: " + e.getMessage());
         }
         
         return typetoStateMap;
