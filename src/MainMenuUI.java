@@ -123,11 +123,23 @@ public class MainMenuUI extends JFrame implements ActionListener {
         btGenReport.setBorder(BorderFactory.createEtchedBorder(Color.white, Color.white));
         DISPANEL.add(btGenReport);
 
-        if (accessLevel == 0) {
-            System.out.println("Access Level 1");
+        if (accessLevel == 1) {
+            btEditFurniture.setEnabled(true);
+            btAddOccupant.setEnabled(false);
+            btDeleteOccupant.setEnabled(false);
+            btDisplayOccupants.setEnabled(false);
+            btDisplayRooms.setEnabled(false);
+            btEditOccupant.setEnabled(false);
+            btGenReport.setEnabled(false);
         }
-        else if (accessLevel == 1) {
-            System.out.println("Access Level 2");
+        else if (accessLevel == 2) {
+            btEditFurniture.setEnabled(true);
+            btAddOccupant.setEnabled(true);
+            btDeleteOccupant.setEnabled(true);
+            btDisplayOccupants.setEnabled(true);
+            btDisplayRooms.setEnabled(true);
+            btEditOccupant.setEnabled(true);
+            btGenReport.setEnabled(true);
         }
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
