@@ -82,6 +82,21 @@ public class TaylorAdmin{
         }
         return null;
     }
+    
+    public Room getRoomwithOccupantID(int idNum){
+
+        for(Block b: blocks){
+            
+            for(Room r :b.getRooms()){
+                
+                if(r.findOccupantByIdNum(idNum)!=null){
+
+                    return r;
+                }
+            }
+        }
+        return null;
+    }
 
 
     //Mutators
