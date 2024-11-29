@@ -1,4 +1,4 @@
-Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,A1
+Excellent,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,A1
 Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,A2
 Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,A3
 Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,Fair,A4
