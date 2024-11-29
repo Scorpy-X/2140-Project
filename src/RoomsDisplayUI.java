@@ -47,7 +47,7 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
         lbSort.setForeground(Color.white);
         HEADERPANEL.add(lbSort);
  
-        String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
+        String[] sortOptions = {" ", "First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)", "Room Number (Ascending)", "Room Number (Descending)",
                 "Condition (Ascending)", "Condition (Descending)"};
         cmbSortOptions = new JComboBox<>(sortOptions);
@@ -182,48 +182,50 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
             dispose();
         }
         else if (e.getSource() == cmbSortOptions) {
-            if (cmbSortOptions.getSelectedItem().equals("First Name (Ascending)")) {
-                System.out.println("SortA Reached");
-                Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("First Name (Descending)")) {
-                System.out.println("SortB Reached");
-                Collections.sort(database.getAllRooms(), new SortbyFirstNameDsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Surname (Ascending)")) {
-                Collections.sort(database.getAllRooms(), new SortbyLastNameAsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Surname (Descending)")) {
-                Collections.sort(database.getAllRooms(), new SortbyLastNameDsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Room Number (Ascending)")) {
-                Collections.sort(database.getAllRooms(), new SortbyRoomNumAsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Room Number (Descending)")) {
-                Collections.sort(database.getAllRooms(), new SortbyRoomNumDsc());
-                tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Condition (Ascending)")) {
-                // Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
-                // tableModel.setRowCount(0);
-                // loadRoomsTable(database.getAllRooms());
-            }
-            else if (cmbSortOptions.getSelectedItem().equals("Condition (Descending)")) {
-                // Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
-                // tableModel.setRowCount(0);
-                // loadRoomsTable(database.getAllRooms());
-            }
+            System.out.println(cmbSortOptions.getSelectedItem());
         }
+        //     if (cmbSortOptions.getSelectedItem().equals("First Name (Ascending)")) {
+        //         System.out.println("SortA Reached");
+        //         Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("First Name (Descending)")) {
+        //         System.out.println("SortB Reached");
+        //         Collections.sort(database.getAllRooms(), new SortbyFirstNameDsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Surname (Ascending)")) {
+        //         Collections.sort(database.getAllRooms(), new SortbyLastNameAsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Surname (Descending)")) {
+        //         Collections.sort(database.getAllRooms(), new SortbyLastNameDsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Room Number (Ascending)")) {
+        //         Collections.sort(database.getAllRooms(), new SortbyRoomNumAsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Room Number (Descending)")) {
+        //         Collections.sort(database.getAllRooms(), new SortbyRoomNumDsc());
+        //         tableModel.setRowCount(0);
+        //         loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Condition (Ascending)")) {
+        //         // Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
+        //         // tableModel.setRowCount(0);
+        //         // loadRoomsTable(database.getAllRooms());
+        //     }
+        //     else if (cmbSortOptions.getSelectedItem().equals("Condition (Descending)")) {
+        //         // Collections.sort(database.getAllRooms(), new SortbyFirstNameAsc());
+        //         // tableModel.setRowCount(0);
+        //         // loadRoomsTable(database.getAllRooms());
+        //     }
+        // }
     }
 }

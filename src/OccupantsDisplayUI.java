@@ -44,7 +44,7 @@ public class OccupantsDisplayUI extends JFrame implements ActionListener{
         lbSort.setForeground(Color.white);
         HEADERPANEL.add(lbSort);
  
-        String[] sortOptions = {"First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
+        String[] sortOptions = {" ", "First Name (Ascending)", "First Name (Descending)", "Surname (Ascending)",
                 "Surname (Descending)"};
         JComboBox<String> cmbSortOptions = new JComboBox<>(sortOptions);
         cmbSortOptions.setEditable(false);
