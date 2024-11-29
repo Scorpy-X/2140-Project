@@ -8,7 +8,7 @@ public class DeleteOccupantUI extends JFrame {
 	public void getOccupantIDUI(TaylorAdmin th, int a_lvl){
 		setTitle("ID Number of Student to be deleted");
 		setSize(380, 200);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setLayout(new GridLayout(3, 2, 10, 10));
 		JLabel idNumLabel = new JLabel("Student ID:");
