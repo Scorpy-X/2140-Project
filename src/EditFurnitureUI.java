@@ -68,8 +68,9 @@ public class EditFurnitureUI extends JFrame {
 	}
 
 	public void FurnitureFormUI(Room r, TaylorAdmin th) {
-		setTitle("Edit Occupant Form");
-		setSize(400, 300);
+		setTitle("Edit Furniture Form");
+		
+		setSize(600,700);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		
