@@ -7,7 +7,7 @@ public static void main(String[] args) {
         // Example login attempts
 		
 		TaylorAdmin th = new TaylorAdmin();
-		Room r = th.findByRoomIdNum("B1");
+		Room r = th.findByRoomIdNum("C1");
 		
 		
 		System.out.println(r.getNumOccupants());

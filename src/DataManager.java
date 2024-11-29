@@ -85,8 +85,7 @@ public class DataManager {
 				furnituremap = getTypeStateMap(room_id);
 				
 				getTypeStateMap(room_id);
-				r_lst.add(new Room(room_id, c,
-						o_lst.size() > 0 ? o_lst.get(0) : null,
+				r_lst.add(new Room(room_id, c, o_lst.size() > 0 ? o_lst.get(0) : null,
 						furnituremap.getOrDefault("Easy Chair", "Fair"),
 						furnituremap.getOrDefault("Bed", "Fair"),
 						furnituremap.getOrDefault("Mattrass", "Fair"),
