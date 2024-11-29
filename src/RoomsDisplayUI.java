@@ -215,41 +215,54 @@ public class RoomsDisplayUI extends JFrame implements ActionListener {
 
                 ArrayList<Room> localRooms = new ArrayList<>();
                 localRooms.addAll(database.getAllRooms());
-                Collections.sort(localRooms, new RSortByName());
+                Collections.sort(localRooms, new RSortByNameA());
                 tableModel.setRowCount(0);
                 loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 2) {
-                System.out.println("descending sort by surname");
+                // System.out.println("descending sort by surname");
 
                 ArrayList<Room> localRooms = new ArrayList<>();
                 localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new RSortByNameD());
                 tableModel.setRowCount(0);
                 loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 3) {
-                System.out.println("ascending sort by room number");
-                // Collections.sort(database.getAllRooms(), new SortbyLastNameAsc());
+                // System.out.println("ascending sort by room number");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new SortbyRoomNumAsc());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 4) {
-                System.out.println("descending sort by room number");
-                // Collections.sort(database.getAllRooms(), new SortbyLastNameDsc());
+                // System.out.println("descending sort by room number");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new SortbyRoomNumDsc());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 5) {
-                System.out.println("ascending sort by condition");
-                Collections.sort(database.getAllRooms(), new SortbyRoomNumAsc());
+                // System.out.println("ascending sort by condition");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new RSortByConditionA());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
             else if (cmbSortOptions.getSelectedIndex() == 6) {
-                System.out.println("descending sort by condition");
-                Collections.sort(database.getAllRooms(), new SortbyRoomNumDsc());
+                // System.out.println("descending sort by condition");
+
+                ArrayList<Room> localRooms = new ArrayList<>();
+                localRooms.addAll(database.getAllRooms());
+                Collections.sort(localRooms, new RSortByConditionD());
                 tableModel.setRowCount(0);
-                loadRoomsTable(database.getAllRooms());
+                loadRoomsTable(localRooms);
             }
         }
     }

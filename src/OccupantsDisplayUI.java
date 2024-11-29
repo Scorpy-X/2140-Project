@@ -89,24 +89,32 @@ public class OccupantsDisplayUI extends JFrame implements ActionListener{
             dispose();
         }
         else if (cmbSortOptions.getSelectedIndex() == 1) {
-            Collections.sort(database.getAllOccupants(), new SortbyFirstNameAsc());
+            ArrayList<Occupant> localOccupants = new ArrayList<>();
+            localOccupants.addAll(database.getAllOccupants());
+            Collections.sort(localOccupants, new SortbyFirstNameAsc());
             tableModel.setRowCount(0);
-            loadOccupantsTable(database.getAllOccupants());
+            loadOccupantsTable(localOccupants);
         }
         else if (cmbSortOptions.getSelectedIndex() == 2) {
-            Collections.sort(database.getAllOccupants(), new SortbyFirstNameDsc());
+            ArrayList<Occupant> localOccupants = new ArrayList<>();
+            localOccupants.addAll(database.getAllOccupants());
+            Collections.sort(localOccupants, new SortbyFirstNameDsc());
             tableModel.setRowCount(0);
-            loadOccupantsTable(database.getAllOccupants());
+            loadOccupantsTable(localOccupants);
         }
         else if (cmbSortOptions.getSelectedIndex() == 3) {
-            Collections.sort(database.getAllOccupants(), new SortbyLastNameAsc());
+            ArrayList<Occupant> localOccupants = new ArrayList<>();
+            localOccupants.addAll(database.getAllOccupants());
+            Collections.sort(localOccupants, new SortbyLastNameAsc());
             tableModel.setRowCount(0);
-            loadOccupantsTable(database.getAllOccupants());
+            loadOccupantsTable(localOccupants);
         }
         else if (cmbSortOptions.getSelectedIndex() == 4) {
-            Collections.sort(database.getAllOccupants(), new SortbyLastNameDsc());
+            ArrayList<Occupant> localOccupants = new ArrayList<>();
+            localOccupants.addAll(database.getAllOccupants());
+            Collections.sort(localOccupants, new SortbyLastNameDsc());
             tableModel.setRowCount(0);
-            loadOccupantsTable(database.getAllOccupants());
+            loadOccupantsTable(localOccupants);
         }
     }
 }

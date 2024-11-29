@@ -7,9 +7,5 @@ public class SortbyLastNameAsc extends Occupant implements Comparator<Occupant>{
     	 
             return o1.getlName().compareTo(o2.getlName());
     }   
-
-    public int compareTo(Occupant o) {
-        return o.getlName().compareTo(this.getlName());
-    }
 }
 
