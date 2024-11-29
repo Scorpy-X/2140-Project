@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "ReportUI",
+            "request": "launch",
+            "mainClass": "ReportUI",
+            "projectName": "2140-Project"
+        },
+        {
+            "type": "java",
             "name": "ReportGenerator",
             "request": "launch",
             "mainClass": "ReportGenerator",

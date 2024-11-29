@@ -18,7 +18,7 @@ public class ReportUI extends JFrame {
         setSize(Toolkit.getDefaultToolkit().getScreenSize());
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         setResizable(false);
-        getContentPane().setLayout(new GridLayout(5, 7));
+        getContentPane().setLayout(new GridLayout(0, 1));
         getContentPane().setBackground(Color.lightGray);
 
         // JPanel DISPANEL = new JPanel();
@@ -120,5 +120,10 @@ public class ReportUI extends JFrame {
 
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setVisible(true);
+    }
+
+    public static void main(String[] args) {
+        TaylorAdmin th = new TaylorAdmin();
+        new ReportUI(th);
     }
 }
